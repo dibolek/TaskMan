@@ -8,11 +8,7 @@
 #include <vector>
 #include <iostream>
 
-//#include <boost/serialization/vector.hpp>
-
 using namespace std;
-
-
 
 class User
 {
@@ -46,16 +42,6 @@ class User
         void displayEvents();
         void saveUserData();
 
-
-//serialization code
-//    private:
-//        friend class boost::serialization::access;
-//        template<typename Archive>
-//        void serialize(Archive &ar, std::vector<Event*> & objs, const unsigned version){
-//            ar & userID & userName & fileName & objs;
-//        };
-// end of serialization
 };
-
 
 #endif // USER_H

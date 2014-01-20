@@ -14,18 +14,6 @@
 #include <fstream>
 
 
-
-
-//serialization libraries
-//#include <boost/archive/text_iarchive.hpp>
-//#include <boost/archive/text_oarchive.hpp>
-//namespace boost {
-//namespace serialization {
-//class access;
-//}
-//}
-//end of serialization
-
 using namespace std;
 
 int main()
@@ -41,7 +29,6 @@ int main()
     Users.addUser(currentUser,"Tereska I Deska");
     Users.addUser(currentUser,"Ktos Tam");
 
-
     vector<UsersListStruct> mainVector = Users.getUsersVector();
 
     Users.displayUsersInfo();
@@ -56,7 +43,6 @@ int main()
 
     currentUser.displayEvents();
 
-
     DataStorage Storage;
     Storage.allUsersVectorExport( mainVector, "users2.txt");
 
@@ -64,37 +50,6 @@ int main()
     Users.setUsersVector(mainVector);
 
     Users.displayUsersInfo();
-
-
-
-
-
-/*   zapis wydarzen z sortowaniem --------------------------------
-
-    Meeting *wskMeeting;
-    ToDoList *wskToDO;
-    Note *wskNote;
-    Event *wskEvent;
-
-    if ( wskMeeting = dynamic_cast<Meeting*>(wskEvent) ) {
-            zapis meeting
-        } else {
-        } if ( wskToDO = dynamic_cast<ToDoList*>(wskEvent) ){
-            zapis todolist
-        } else ( wskNote = dynamic_cast<Note*>(wskEvent) ) {
-            zapis note
-        }
------------------------------------------------------------------*/
-
-
-//-------------------serialization code----------------------------------------
-//    {
-//    ofstream plikser( "usrs_ser.txt" );
-//    boost::archive::text_oarchive ar(plikser);
-//    ar & Users;
-//    }
-//-------------------endof-----------------------------------------------------
-
 
 
     cin.get();

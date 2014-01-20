@@ -14,14 +14,6 @@ class DataInOut
     public:
         DataInOut();
 
-//        void userDataExport(User & usr);
-//        void userDataImport(User & usr);
-
-//        void allUsersVectorExport(vector<UsersListStruct> &vec, char *nazwapliku);
-//        void allUsersVectorImport(vector<UsersListStruct> &vec, char *nazwapliku);
-
-
-
 };
 
 #endif // DATAIO_H

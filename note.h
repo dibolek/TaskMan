@@ -2,7 +2,6 @@
 #define NOTE_H
 #include "event.h"
 
-
 class Note : public Event
 {
     public:
