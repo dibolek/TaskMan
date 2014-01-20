@@ -3,6 +3,7 @@
 #include "todolist.h"
 #include "note.h"
 #include <QtCore/qdatetime.h>
+#include <calendar.h>
 //#include <QtCore/QDate>
 
 #include "date.h"
@@ -31,6 +32,10 @@ int main()
     Users.addUser(currentUser,"Huio Iglesias");
     Users.addUser(currentUser,"Tereska I Deska");
     Users.addUser(currentUser,"Ktos Tam");
+
+    Calendar kalendarz;
+
+    kalendarz.displayCalendar(01,2014);
 
     vector<UsersListStruct> mainVector = Users.getUsersVector();
 

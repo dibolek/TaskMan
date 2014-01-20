@@ -16,11 +16,11 @@ public:
     QDateTime getDateTimeObject();
     QDate getCurrentDate();
     QTime getCurrentTime();
-    QDate getDateFromString(string date);
-    QTime getTimeFromString(string time);
-    string getStringFromDate(QDate date);
-    string getStringFromTime(QTime time);
-    int getDaysInMonth(QDate date);
+    QDate getDateFromString(string &date);
+    QTime getTimeFromString(string &time);
+    string getStringFromDate(QDate &date);
+    string getStringFromTime(QTime &time);
+    int getDaysInMonth(QDate &date);
 
 };
 
