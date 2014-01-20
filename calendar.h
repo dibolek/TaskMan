@@ -1,14 +1,18 @@
 #ifndef CALENDAR_H
 #define CALENDAR_H
+#include <date.h>
 
 using namespace std;
 
 class Calendar
 {
-    public:
-        Calendar();
+private:
 
-        void displayCalendar(int month, int year);
+public:
+    Calendar();
+
+    void displayCalendar(int month, int year);
+
 };
 
 #endif // CALENDAR_H
