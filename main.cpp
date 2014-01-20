@@ -13,16 +13,18 @@
 #include <vector>
 #include <fstream>
 
+
+
+
 //serialization libraries
 //#include <boost/archive/text_iarchive.hpp>
 //#include <boost/archive/text_oarchive.hpp>
+//namespace boost {
+//namespace serialization {
+//class access;
+//}
+//}
 //end of serialization
-
-namespace boost {
-namespace serialization {
-class access;
-}
-}
 
 using namespace std;
 

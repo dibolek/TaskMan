@@ -3,6 +3,7 @@ CONFIG += console
 CONFIG -= app_bundle
 CONFIG -= qt
 
+INCLUDEPATH += C:\Qt\Qt5.2.0\5.2.0\mingw48_32\include\QtCore
 INCLUDEPATH += C:\Qt\boost_1_55_0
 
 SOURCES += main.cpp \
