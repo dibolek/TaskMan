@@ -1,8 +1,11 @@
 #include "allusers.h"
-
 #include "meeting.h"
 #include "todolist.h"
 #include "note.h"
+#include <QtCore/qdatetime.h>
+//#include <QtCore/QDate>
+
+#include "date.h"
 //#include "datastorage.h"
 
 //#include <qstring>
@@ -50,6 +53,7 @@ int main()
     Users.setUsersVector(mainVector);
 
     Users.displayUsersInfo();
+
 
 
     cin.get();

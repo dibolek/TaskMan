@@ -3,3 +3,10 @@
 Date::Date()
 {
 }
+
+QDate Date::getDateFromString(string date)
+{
+
+//    QString
+
+}
