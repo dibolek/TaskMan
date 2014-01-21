@@ -27,15 +27,28 @@ int main()
     AllUsers Users;
     User currentUser;
 
+
+    /* inicjalizacja daty na ktorej bedziemy operowac podczas pracy
+     * calego programu przy pomocy aktualnej daty systemowej */
+
+    Date coreDate;
+
+    Calendar kalendarz;
+
+    kalendarz.displayCalendar(coreDate);
+
+    //cout << "Dzisiaj mamy: " << coreDate.getStringFromDate(coreDate.getMainDate().date()) << endl << endl;
+
+
+
+
     Users.addUser(currentUser,"Mama Terenia");
     Users.addUser(currentUser,"Johnny Deep");
     Users.addUser(currentUser,"Huio Iglesias");
     Users.addUser(currentUser,"Tereska I Deska");
     Users.addUser(currentUser,"Ktos Tam");
 
-    Calendar kalendarz;
 
-    kalendarz.displayCalendar(01,2014);
 
     vector<UsersListStruct> mainVector = Users.getUsersVector();
 

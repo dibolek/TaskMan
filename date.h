@@ -9,18 +9,24 @@ using namespace std;
 
 class Date
 {
+private:
+    QDateTime mainDate;
 
 public:
     Date();
 
     QDateTime getDateTimeObject();
     QDate getCurrentDate();
+    void setDate( int day, int month, int year );
     QTime getCurrentTime();
+    void setTime( int hour, int minutes, int seconds );
     QDate getDateFromString(string &date);
     QTime getTimeFromString(string &time);
-    string getStringFromDate(QDate &date);
+    string getStringFromDate(const QDate &date);
     string getStringFromTime(QTime &time);
     int getDaysInMonth(QDate &date);
+    QDateTime getMainDate();
+
 
 };
 

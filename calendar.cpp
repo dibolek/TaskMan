@@ -7,11 +7,11 @@ Calendar::Calendar()
 {
 }
 
-void Calendar::displayCalendar(int month, int year)
+void Calendar::displayCalendar( Date &data )
 {
-    QDate data = QDate(year, month, 01);
-    int days = data.daysInMonth();
-    int weekDay = data.dayOfWeek();
+    //data.setDate(01,month,year);
+    int days = data.getMainDate().date().daysInMonth();
+    int weekDay = data.getMainDate().date().dayOfWeek();
 
     char weekDays[7] = {'P','W','S','C','P','S','N'};
     const char *Months[] = {"Styczen","Luty","Marzec","Kwiecien","Maj","Czerwiec","Lipiec","Sierpien","Wrzesien","Pazdziernik","Listopad","Grudzien"};
@@ -19,7 +19,7 @@ void Calendar::displayCalendar(int month, int year)
     int licznik = 1;
     int tablica[6][7];
 
-
+    // wypelnianie tablicy
     for (int i = 0; i < 6; ++i)
     {
         for (int j = 0; j < 7; ++j)
@@ -51,8 +51,8 @@ void Calendar::displayCalendar(int month, int year)
     }
 
     //wyswietlenie miesiaca
-    cout << Months[data.month()-1];
-    cout << endl;
+    cout << Months[data.getMainDate().date().month()-1] << " " << data.getMainDate().date().year();
+    cout << endl << endl;
 
     //wyswietlenie dni tygodnia
     for ( int i=0 ; i<7 ; i++ )
@@ -72,9 +72,9 @@ void Calendar::displayCalendar(int month, int year)
             else
             cout << setw(3) << tablica [i][j];
         }
-        cout<<endl;
+        cout << endl;
     }
 
-
+    cout << "Dzisiaj mamy: " << data.getStringFromDate(data.getMainDate().date().currentDate()) << endl << endl;
 
 }

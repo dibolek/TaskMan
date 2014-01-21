@@ -11,7 +11,7 @@ private:
 public:
     Calendar();
 
-    void displayCalendar(int month, int year);
+    void displayCalendar(Date &data);
 
 };
 
