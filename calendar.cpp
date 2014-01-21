@@ -13,42 +13,57 @@ void Calendar::displayCalendar(int month, int year)
     int days = data.daysInMonth();
     int weekDay = data.dayOfWeek();
 
-    char monthArray[6][7];
+    int monthArray[6][7];
 
-    for ( int m=1 ; m<=days ; )
-    {
-        for ( int i=0 ; i<6 ; i++ )
+    int licznik = 1;
+        int tablica[6][7];
+
+
+        for (int i = 0; i < 6; ++i)
         {
-            for ( int z=0 ; z<weekDay-1 ; z++ )
-            {
-                monthArray[i][z] = 0;
-            }
-
-
-            for ( int j=(weekDay-1) ; j<7 ; j++)
-            {
-                monthArray[i][j] = m;
-                m++;
-            }
+            for (int j = 0; j < 7; ++j)
+                {
+                    tablica [i][j] = 0;
+                }
         }
 
-        for ( int i=1 ; i<6 ; i++ )
+        for (int i = 0; i < 6; ++i)
         {
-            for ( int j=1 ; j<7 ; j++ )
-            {
-                monthArray[i][j] = m;
-                m++;
-            }
-        }
-    }
+            if ( i != 0)
+                {
+                    for (int j = 0 ; j < 7; ++j, ++licznik, --days)
+                        {
+                            if (days > 0)
+                                {
+                                    tablica[i][j] = licznik;
+                                }
+                    }
 
-    for ( int i=0 ; i<6 ; i++ )
-    {
-        for ( int j=0 ; j<7 ; j++ )
-        {
-            cout << setw(3) << monthArray[i][j];
+            }
+            else
+            {
+
+                for (int j = weekDay ; j <= 7; ++j, ++licznik, --days)
+                    {
+                        tablica[0][j-1] = licznik;
+                    }
+            }
+
         }
-        cout << endl;
-    }
+
+
+        for (int i = 0; i < 6; ++i)
+        {
+            for (int j = 0; j < 7; ++j)
+                {
+                    if ( tablica [i][j] == 0)
+                    cout << setw(3) << " ";
+                    else
+                    cout << setw(3) << tablica [i][j];
+
+
+                }
+            cout<<endl;
+        }
 
 }
