@@ -26,6 +26,7 @@ class User
 
 //--------------------- get and set section ------------------------------------
         vector<Event *> getEventsVector() const;
+        void setEventsVector(const vector<Event *> &value);
         int getUserID() const;
         void setUserID(int value);
         string getUserName() const;

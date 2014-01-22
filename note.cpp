@@ -4,6 +4,11 @@ Note::Note(int _id, QDateTime _dataIczas, string _message) : Event(_id,_dataIcza
 {
 }
 
+Note::Note()
+{
+    
+}
+
 void Note::printEventInfo()
 {
         cout<< "(" << eventID << ") "

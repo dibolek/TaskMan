@@ -10,6 +10,7 @@ class Meeting : public Event
 
     public:
         Meeting(int _id, QDateTime _dataIczas, string _message, string _place, int _duration);
+        Meeting();
 
         virtual void printEventInfo();
         string getPlaceOfMeeting() const;

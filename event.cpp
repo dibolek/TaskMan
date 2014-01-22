@@ -34,6 +34,11 @@ Event::Event(int _id, QDateTime _dataIczas, string _message) : eventID(_id), dat
 {
 }
 
+Event::Event()
+{
+    
+}
+
 Event::~Event()
 {
 

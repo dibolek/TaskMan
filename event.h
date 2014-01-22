@@ -16,6 +16,7 @@ class Event
 
     public:
         Event(int _id, QDateTime _dataIczas, string _message);
+        Event();
         virtual ~Event();
 
         virtual void printEventInfo()=0;

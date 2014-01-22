@@ -120,11 +120,8 @@ void DataStorage::userDataExport(User &usr)
          << usr.getUserName() << endl
          << usr.getFileName() << endl;
 
-    int type;
-
     for (vector<Event *>::iterator itr = tmp.begin(), end = tmp.end() ; itr != end ; ++itr) {
            datetime.setDateAndTimeObject( (*itr)->getDataIczas() );
-//           type = usr.whatTypeEventIs(*itr);
            Event * p_Event = *itr;
            Meeting *p_Meeting = 0;
            ToDoList *p_ToDoList = 0;
@@ -134,8 +131,6 @@ void DataStorage::userDataExport(User &usr)
                 plik << 1 << endl
                      << p_Meeting->getPlaceOfMeeting() << endl
                      << p_Meeting->getDurationOfMeeting() << endl;
-//                     << p_Meeting->getEventID() << endl
-//                     << p_Meeting->getMessage() << endl;
 
            }else if ( (p_ToDoList = dynamic_cast<ToDoList*>(p_Event)) ) {
                        plik << 2 << endl
@@ -157,10 +152,61 @@ void DataStorage::userDataExport(User &usr)
 
 }//userDataExport
 
-void DataStorage::userDataImport(User &usr)
+void DataStorage::userDataImport(User &usr, string _nazwaPliku)
 {
+    ifstream plik(_nazwaPliku.c_str());
 
-}
+    Date datetime;
+    int x;
+    string y;
+
+    getline(plik, y);
+    int eventsCount = convertStringToInt( y );
+    vector<Event *> tmp;
+
+    getline(plik, y);
+    usr.setUserID( convertStringToInt( y ) );
+    getline(plik, y);
+    usr.setUserName( y );
+    getline(plik, y);
+    usr.setFileName( y );
+
+    Event * p_Event = 0;
+    Meeting *p_Meeting = 0;
+    
+    for (int i = 0; i < eventsCount; ++i) {
+            getline(plik, y);
+            x = convertStringToInt( y );
+
+            if ( x == 1 ) {
+                 p_Meeting = new Meeting();
+                 getline(plik, y);
+                 p_Meeting->setPlaceOfMeeting( y );
+                 getline(plik, y);
+                 p_Meeting->setDurationOfMeeting( convertStringToInt( y ) );
+                 p_Event = dynamic_cast<Event*>(p_Meeting);
+                }else if ( x == 2 ) {
+                    p_Event = new ToDoList();
+                    getline(plik, y);
+                    getline(plik, y);
+                }else if ( x == 3 ) {
+                    p_Event = new Note();
+                    getline(plik, y);
+                    getline(plik, y);
+                }
+            getline(plik, y);
+            p_Event->setEventID( convertStringToInt( y ) );
+            getline(plik, y);
+            p_Event->setMessage( y );
+
+            getline(plik, y);
+            datetime.ImportDateAndTimeFromString(y);
+            p_Event->setDataIczas( datetime.getDateAndTimeObject() );
+            tmp.push_back(p_Event);
+    }//for
+    usr.setEventsVector(tmp);
+    plik.close();
+}//dataStorage
 
 void DataStorage::allUsersVectorExport(vector<UsersListStruct> &vec, string nazwapliku)
 {
@@ -183,14 +229,14 @@ void DataStorage::allUsersVectorImport(vector<UsersListStruct> &vec, string nazw
     int x;
     string y;
     getline(plik, y);
-    x = atoi( y.c_str() );
+    x = convertStringToInt(y);
 
     vector<UsersListStruct> temporary(x);
 
     for (vector<UsersListStruct>::iterator itr = temporary.begin(), end = temporary.end(); itr != end; ++itr) {
 
             getline(plik, y);
-            (*itr).userID = atoi(y.c_str());
+            (*itr).userID = convertStringToInt(y);
 
             getline(plik, y);
             (*itr).userName = y;

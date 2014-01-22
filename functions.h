@@ -5,18 +5,15 @@
 #include <cstdlib>
 #include <string>
 #include <cstring>
+#include <sstream>
+
 
 using namespace std;
 
 int createRandomValue(int range, int startingPoint);
 int getIntegerFromConsole();
 string getStringFromConsole();
-int mainMenu();
-int menuLogged();
-int menuShowCalendar();
-int menuShowEvents();
-void loggedAs();
-
+int convertStringToInt(string _str);
 
 
 #endif // FUNCTIONS_H

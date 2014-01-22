@@ -50,7 +50,7 @@ class DataStorage
         DataStorage();
 
         void userDataExport(User & usr);
-        void userDataImport(User & usr);
+        void userDataImport(User & usr, string _nazwaPliku);
 
         void allUsersVectorExport(vector<UsersListStruct> &vec, string nazwapliku);
         void allUsersVectorImport(vector<UsersListStruct> &vec, string nazwapliku);

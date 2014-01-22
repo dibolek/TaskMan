@@ -3,6 +3,7 @@
 
 //--------------constructors and destructor section ----------------------------
 
+
 User::User(string name, int id, string fname)
 {
     userName = name;
@@ -30,6 +31,11 @@ User::~User()
 vector<Event *> User::getEventsVector() const
 {
     return eventsVector;
+}
+
+void User::setEventsVector(const vector<Event *> &value)
+{
+    eventsVector = value;
 }
 
 int User::getUserID() const

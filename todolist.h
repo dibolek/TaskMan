@@ -6,6 +6,7 @@ class ToDoList : public Event
 {
     public:
         ToDoList(int _id, QDateTime _dataIczas, string _message);
+        ToDoList();
 
         virtual void printEventInfo();
 };

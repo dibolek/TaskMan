@@ -24,6 +24,11 @@ Meeting::Meeting(int _id, QDateTime _dataIczas, string _message, string _place, 
 {
 }
 
+Meeting::Meeting()
+{
+    
+}
+
 void Meeting::printEventInfo()
 {
     cout<< "(" << eventID << ") "

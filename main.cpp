@@ -86,16 +86,20 @@ int main()
     currentUser.displayEvents();
 
 
-
+    // Test exportu danych uzytkownika -----------------------------------
     DataStorage Storage;
     Storage.allUsersVectorExport( mainVector, "users2.txt");
-
     Storage.allUsersVectorImport( mainVector, "users3.txt");
     Users.setUsersVector(mainVector);
-
     Users.displayUsersInfo();
-
     Storage.userDataExport(currentUser);
+    //--------------------------------------------------------------------
+
+    //test importu danych uzytkownika ------------------------------------
+    User currentUser2;
+    Storage.userDataImport(currentUser2,currentUser.getFileName());
+    currentUser2.displayEvents();
+    //--------------------------------------------------------------------
 
 
 

@@ -4,6 +4,11 @@ ToDoList::ToDoList(int _id, QDateTime _dataIczas, string _message) : Event(_id,_
 {
 }
 
+ToDoList::ToDoList()
+{
+    
+}
+
 void ToDoList::printEventInfo()
 {
         cout<< "(" << eventID << ") "
