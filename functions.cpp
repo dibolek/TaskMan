@@ -1,5 +1,6 @@
 #include "functions.h"
-#include <allusers.h>
+
+using namespace std;
 
 int createRandomValue(int range, int startingPoint)
 {
@@ -22,106 +23,90 @@ string getStringFromConsole()
 
 
 //menu przy pierwszym uruchomieniu programu ( dla niezalogowanego usera )
-void firstMenu()
-{
-    char choice;
-
-    cout << "Aplikacja Kalendarz" << endl << endl;
-    cout << "Menu" << endl;
-    cout << "1. Zaloguj sie" << endl;
-    cout << "2. Zaloz konto" << endl;
-    cout << "Q. Wyjdz" << endl << endl;
-    cout << "$: ";
-
-    cin >> choice;
-
-    while ( putchar(tolower(choice)) != 'q' )
-    {
-        switch (choice)
-        {
-            case '1':
-                logowanie();
-                break;
-            case '2':
-                rejestracja();
-                break;
-
-            default:
-                cout << "Nie ma takiej opcji" << endl;
-                cout << "Nacisnij dowolny przycisk..." << endl;
-                getch();
-                break;
-        }
-
-        cout << "Aplikacja Kalendarz" << endl << endl;
-        cout << "Menu" << endl;
-        cout << "1. Zaloguj sie" << endl;
-        cout << "2. Zaloz konto" << endl;
-        cout << "Q. Wyjdz" << endl << endl;
-        cout << "$: ";
-
-        cin >> choice;
-
-    }
-}
-
-void logowanie( vector<UsersListStruct> _users )
+int mainMenu()
 {
     system("cls");
 
-    string login;
-
-    cout << "Podaj swoj login: ";
-    cin login;
-
-    for ( _users::iterator itr = _users.begin(), end = _users.end(); itr != end; i++ )
-    {
-
-    }
-
-}
-
-
-void menuLogged()
-{
-    char choice;
+    int choice;
 
     cout << "Aplikacja Kalendarz" << endl << endl;
-    cout << "Jestes zalogowany jako: " <<
     cout << "Menu" << endl;
     cout << "1. Zaloguj sie" << endl;
     cout << "2. Zaloz konto" << endl;
-    cout << "Q. Wyjdz" << endl << endl;
+    cout << "3. Wyjdz" << endl << endl;
+    cout << "$: ";
+
+    cin >> choice;
+    return choice;
+
+}
+
+void loggedAs()
+{
+    cout << "Aplikacja Kalendarz" << endl << endl;
+    cout << "Jestes zalogowany jako: ";
+}
+
+int menuLogged()
+{
+    int choice;
+
+    cout << "Aplikacja Kalendarz" << endl << endl;
+    cout << "Menu" << endl;
+    cout << "1. Wyswietl kalendarz" << endl;
+    cout << "2. Wyswietl zdarzenia" << endl;
+    cout << "3. Dodaj zdarzenie" << endl;
+    cout << "4. wyloguj sie" << endl << endl;
     cout << "$: ";
 
     cin >> choice;
 
-    while ( putchar(tolower(choice)) != 'q' )
-    {
-        switch (choice)
-        {
-            case '1':
-                logowanie();
-                break;
-            case '2':
-                rejestracja();
-                break;
+    return choice;
 
-            default:
-                cout << "Nie ma takiej opcji" << endl;
-                cout << "Nacisnij dowolny przycisk..." << endl;
-                getch();
-                break;
-        }
+}
 
-        cout << "Aplikacja Kalendarz" << endl << endl;
-        cout << "Menu" << endl;
-        cout << "1. Zaloguj sie" << endl;
-        cout << "2. Zaloz konto" << endl;
-        cout << "Q. Wyjdz" << endl << endl;
-        cout << "$: ";
+int menuShowCalendar()
+{
+    int choice;
 
-        cin >> choice;
+    cout << "Menu - wyswietl kalendarz" << endl;
+    cout << "1. Wyswietl aktualny miesiac" << endl;
+    cout << "2. Wyswietl konkretny meisiac" << endl;
+    cout << "3. cofnij" << endl << endl;
+    cout << "$: ";
 
-    }
+    cin >> choice;
+
+    return choice;
+}
+
+int menuShowEvents()
+{
+    int choice;
+
+    cout << "Menu - wyswietl zdarzenia" << endl;
+    cout << "1. Wyswietl najblizsze" << endl;
+    cout << "2. Wyswietl z danego miesiac" << endl;
+    cout << "3. cofnij" << endl << endl;
+    cout << "$: ";
+
+    cin >> choice;
+
+    return choice;
+}
+
+int menuAddEvent()
+{
+    int choice;
+
+    cout << "Menu - dodaj zdarzenie" << endl;
+    cout << "1. Notatka" << endl;
+    cout << "2. Spotkanie" << endl;
+    cout << "3. ToDo List" << endl;
+    cout << "3. cofnij" << endl << endl;
+    cout << "$: ";
+
+    cin >> choice;
+
+    return choice;
 }
