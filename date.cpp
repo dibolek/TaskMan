@@ -12,6 +12,12 @@ void Date::setDateAndTimeObject(const QDateTime &value)
 {
     dateAndTimeObject = value;
 }
+
+void Date::setCurrentDateAndTime()
+{
+    dateAndTimeObject = QDateTime::currentDateTime();
+}
+
 Date::Date()
 {
     dateAndTimeObject = QDateTime(QDate::currentDate(),QTime::currentTime());
@@ -30,6 +36,21 @@ void Date::setDate( int day, int month, int year )
 {
     QDate data(year,month,day);
     dateAndTimeObject.setDate(data);
+}
+
+void Date::setDateFromString(string &date)
+{
+    QString dateString = QString::fromStdString(date);
+    QDate dateFromString = QDate::fromString(dateString,"dd-MM-yyyy");
+    dateAndTimeObject.setDate(dateFromString);
+}
+
+// zamiana string > qtime
+void Date::setTimeFromString(string &time)
+{
+    QString timeString = QString::fromStdString(time);
+    QTime timeFromString = QTime::fromString(timeString,"hh:mm");
+    dateAndTimeObject.setTime(timeFromString);
 }
 
 //zwracanie aktualnego czasu
