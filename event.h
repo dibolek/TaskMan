@@ -2,6 +2,8 @@
 #define EVENT_H
 #include "functions.h"
 #include <iostream>
+#include <QDateTime>
+#include <date.h>
 
 using namespace std;
 
@@ -9,15 +11,20 @@ class Event
 {
     protected:
         int eventID;
-        int date;
-        int hour;
+        QDateTime dataIczas;
         string message;
 
     public:
-        Event(int _id, int _date, int _hour, string _message);
+        Event(int _id, QDateTime _dataIczas, string _message);
         virtual ~Event();
 
         virtual void printEventInfo()=0;
+        int getEventID() const;
+        void setEventID(int value);
+        string getMessage() const;
+        void setMessage(const string &value);
+        QDateTime getDataIczas() const;
+        void setDataIczas(const QDateTime &value);
 };
 
 #endif // EVENT_H

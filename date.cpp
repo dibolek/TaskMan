@@ -1,8 +1,20 @@
 #include "date.h"
 
+
+
+
+QDateTime Date::getDateAndTimeObject() const
+{
+    return dateAndTimeObject;
+}
+
+void Date::setDateAndTimeObject(const QDateTime &value)
+{
+    dateAndTimeObject = value;
+}
 Date::Date()
 {
-    mainDate = QDateTime(QDate::currentDate(),QTime::currentTime());
+    dateAndTimeObject = QDateTime(QDate::currentDate(),QTime::currentTime());
 }
 
 // zwracanie aktualnej daty
@@ -17,7 +29,7 @@ QDate Date::getCurrentDate()
 void Date::setDate( int day, int month, int year )
 {
     QDate data(year,month,day);
-    mainDate.setDate(data);
+    dateAndTimeObject.setDate(data);
 }
 
 //zwracanie aktualnego czasu
@@ -32,7 +44,7 @@ QTime Date::getCurrentTime()
 void Date::setTime( int hour, int minutes, int seconds )
 {
     QTime czas(hour,minutes,seconds);
-    mainDate.setTime(czas);
+    dateAndTimeObject.setTime(czas);
 }
 
 // zamiana string > qdate
@@ -76,7 +88,16 @@ int Date::getDaysInMonth(QDate &date)
     return date.daysInMonth();
 }
 
-QDateTime Date::getMainDate()
+
+
+void Date::ImportDateAndTimeFromString(string _str)
 {
-    return mainDate;
+    QString qstr(_str.c_str());
+    dateAndTimeObject =  QDateTime::fromString(qstr,"dd-MM-yyyyhh:mm");
+}
+
+string Date::ExportDateAndTimeToString()
+{
+    return dateAndTimeObject.toString("dd-MM-yyyyhh:mm").toStdString();
+//    return _qdt.toString("dd-MM-yyyyhh:mm").toStdString();
 }

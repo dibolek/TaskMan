@@ -5,7 +5,7 @@
 class Note : public Event
 {
     public:
-        Note(int _id, int _date, int _hour, string _message);
+        Note(int _id, QDateTime _dataIczas, string _message);
 
         virtual void printEventInfo();
 };

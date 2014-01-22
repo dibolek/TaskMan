@@ -1,13 +1,13 @@
 #include "todolist.h"
 
-ToDoList::ToDoList(int _id, int _date, int _hour, string _message) : Event(_id,_date,_hour,_message)
+ToDoList::ToDoList(int _id, QDateTime _dataIczas, string _message) : Event(_id,_dataIczas,_message)
 {
 }
 
 void ToDoList::printEventInfo()
 {
         cout<< "(" << eventID << ") "
-        << "Dnia " << date << ", o godzinie " << hour
+        << "Dnia " << dataIczas.toString("dd-MM-yyyy', o godzinie 'hh:mm").toStdString()
         << "\n\tMasz do zrobienia: " << message
         <<endl;
 

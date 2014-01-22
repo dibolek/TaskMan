@@ -34,10 +34,10 @@ class User
         void setFileName(const string &value);
 
 //---------------------- other methods -----------------------------------------
-        void addEvent(int typeOfEvent, int id, int date, int hour, string message, string place, int duration);
+        void addEvent(int typeOfEvent, int id, QDateTime _dataIczas, string message, string place, int duration);
         void removeEvent();
         int getEventsCount();
-        string whatTypeEventIs(Event * p_Event);
+        int whatTypeEventIs(Event * p_Event);
         void sortEvents();
         void displayEvents();
         void saveUserData();

@@ -1,6 +1,7 @@
 #ifndef CALENDAR_H
 #define CALENDAR_H
 #include <date.h>
+#include <cstring>
 
 using namespace std;
 

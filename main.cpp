@@ -22,6 +22,20 @@ using namespace std;
 
 int main()
 {
+
+    QDateTime qdt = QDateTime::currentDateTime();
+    Meeting meet(255,qdt,"wiadomosc testowa","glowno", 2);
+
+    meet.printEventInfo();
+
+    Note notka(264,qdt,"tresc naszej otatki jest tutaj");
+    notka.printEventInfo();
+
+    ToDoList todo(98,qdt,"trzeba obciagnac sloniowi");
+    todo.printEventInfo();
+
+
+
     srand(time(0));
 
     AllUsers Users;
@@ -31,13 +45,20 @@ int main()
     /* inicjalizacja daty na ktorej bedziemy operowac podczas pracy
      * calego programu przy pomocy aktualnej daty systemowej */
 
-    Date coreDate;
+    cout << endl << endl ;
 
+    Date coreDate;
     Calendar kalendarz;
 
     kalendarz.displayCalendar(coreDate);
 
-    //cout << "Dzisiaj mamy: " << coreDate.getStringFromDate(coreDate.getMainDate().date()) << endl << endl;
+    coreDate.setDate(1,2,2014);
+    kalendarz.displayCalendar(coreDate);
+
+    coreDate.setDate(1,3,2014);
+    kalendarz.displayCalendar(coreDate);
+
+//    cout << "Dzisiaj mamy: " << coreDate.getStringFromDate(coreDate.getDateAndTimeObject().date()) << endl << endl;
 
 
 
@@ -57,12 +78,14 @@ int main()
 //-------------generator eventow-------------------------------------------
     cout<<"Jestes zalogowany jako : "<<currentUser.getUserName()
           <<"\n\nTwoje ";
-    for (int i = 0; i < 5; ++i) {
-            currentUser.addEvent(createRandomValue(3,1),createRandomValue(999,100),createRandomValue(365,1),createRandomValue(24,1),"tresc wiadomosci","miasto",createRandomValue(6,1));
+    for (int i = 0; i < 5; ++i, coreDate.setDate( createRandomValue(30,1), createRandomValue(12,1),createRandomValue(5,2014) ) ) {
+            currentUser.addEvent( createRandomValue(3,1) , createRandomValue(999,100) , coreDate.getDateAndTimeObject() ,"tresc wiadomosci","miasto",createRandomValue(6,1));
         }
 //--------endof
 
     currentUser.displayEvents();
+
+
 
     DataStorage Storage;
     Storage.allUsersVectorExport( mainVector, "users2.txt");
@@ -71,6 +94,8 @@ int main()
     Users.setUsersVector(mainVector);
 
     Users.displayUsersInfo();
+
+    Storage.userDataExport(currentUser);
 
 
 

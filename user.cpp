@@ -64,19 +64,19 @@ void User::setFileName(const string &value)
 
 //---------------------- other methods -----------------------------------------
 
-void User::addEvent(int typeOfEvent, int id, int date, int hour, string message, string place, int duration)
+void User::addEvent(int typeOfEvent, int id, QDateTime _dataIczas, string message, string place, int duration)
 {
     Event * eventTMP = 0;
 
     switch (typeOfEvent) {
         case 1:
-            eventTMP = new Meeting(id,date,hour,message,place,duration);
+            eventTMP = new Meeting(id,_dataIczas,message,place,duration);
             break;
         case 2:
-            eventTMP = new ToDoList(id,date,hour,message);
+            eventTMP = new ToDoList(id,_dataIczas,message);
             break;
         case 3:
-            eventTMP = new Note(id,date,hour,message);
+            eventTMP = new Note(id,_dataIczas,message);
             break;
         default:
             break;
@@ -95,19 +95,19 @@ int User::getEventsCount()
     return static_cast<int>( eventsVector.size() );
 }
 
-string User::whatTypeEventIs(Event *p_Event)
+int User::whatTypeEventIs(Event *p_Event)
 {
-    Meeting *p_Meeting;
-    ToDoList *p_ToDoList;
-    Note *p_Note;
+    Meeting *p_Meeting = 0;
+    ToDoList *p_ToDoList = 0;
+    Note *p_Note = 0;
 
     if ( ( p_Meeting = dynamic_cast<Meeting*>(p_Event) ) )
-        return "Spotkanie ";
+        return 1; // 1- meeting
     if ( ( p_ToDoList = dynamic_cast<ToDoList*>(p_Event) ) )
-        return "Lista ";
+        return 2; // 2- todolist
     if ( ( p_Note = dynamic_cast<Note*>(p_Event) ) )
-        return "Notatka ";
-    return "Event";
+        return 3; // 3- note
+    return 4 ;  // 4 - event
 }
 
 void User::sortEvents()

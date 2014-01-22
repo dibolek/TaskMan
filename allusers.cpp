@@ -111,8 +111,51 @@ DataStorage::DataStorage()
 
 void DataStorage::userDataExport(User &usr)
 {
+    vector<Event *> tmp = usr.getEventsVector();
+    Date datetime;
 
-}
+    ofstream plik( usr.getFileName().c_str() );
+    plik << tmp.size() << endl
+         << usr.getUserID() << endl
+         << usr.getUserName() << endl
+         << usr.getFileName() << endl;
+
+    int type;
+
+    for (vector<Event *>::iterator itr = tmp.begin(), end = tmp.end() ; itr != end ; ++itr) {
+           datetime.setDateAndTimeObject( (*itr)->getDataIczas() );
+//           type = usr.whatTypeEventIs(*itr);
+           Event * p_Event = *itr;
+           Meeting *p_Meeting = 0;
+           ToDoList *p_ToDoList = 0;
+           Note *p_Note = 0;
+           // type : 1 - meeting, 2 - todolist, 3 -note
+           if( (p_Meeting = dynamic_cast<Meeting*>(p_Event)) ){
+                plik << 1 << endl
+                     << p_Meeting->getPlaceOfMeeting() << endl
+                     << p_Meeting->getDurationOfMeeting() << endl;
+//                     << p_Meeting->getEventID() << endl
+//                     << p_Meeting->getMessage() << endl;
+
+           }else if ( (p_ToDoList = dynamic_cast<ToDoList*>(p_Event)) ) {
+                       plik << 2 << endl
+                            << "nothing" << endl
+                            << 0 << endl;
+
+                 }else if ( (p_Note = dynamic_cast<Note*>(p_Event)) ) {
+                            plik << 3 << endl
+                                 << "nothing" << endl
+                                 << 0 << endl;
+                       }
+           plik << p_Event->getEventID() << endl
+                << p_Event->getMessage() << endl
+                << datetime.ExportDateAndTimeToString() << endl;
+    }//for
+
+    plik.flush();
+    plik.close();
+
+}//userDataExport
 
 void DataStorage::userDataImport(User &usr)
 {

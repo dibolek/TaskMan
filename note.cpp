@@ -1,15 +1,14 @@
 #include "note.h"
 
-Note::Note(int _id, int _date, int _hour, string _message) : Event(_id,_date,_hour,_message)
+Note::Note(int _id, QDateTime _dataIczas, string _message) : Event(_id,_dataIczas,_message)
 {
 }
 
 void Note::printEventInfo()
 {
         cout<< "(" << eventID << ") "
-        << "Notatka dodana dnia " << date
-        << ", o godzinie " << hour
-        << "\n\tTresc: " << message
-        <<endl;
+            << "Notatka dodana dnia "
+            <<  dataIczas.toString("dd-MM-yyyy' o godzinie 'hh:mm").toStdString()
+            << "\n\tTresc: " << message <<endl;
 
 }

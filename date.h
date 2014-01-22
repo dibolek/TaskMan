@@ -10,12 +10,11 @@ using namespace std;
 class Date
 {
 private:
-    QDateTime mainDate;
+    QDateTime dateAndTimeObject;
 
 public:
     Date();
 
-    QDateTime getDateTimeObject();
     QDate getCurrentDate();
     void setDate( int day, int month, int year );
     QTime getCurrentTime();
@@ -25,9 +24,13 @@ public:
     string getStringFromDate(const QDate &date);
     string getStringFromTime(QTime &time);
     int getDaysInMonth(QDate &date);
-    QDateTime getMainDate();
+
+    void ImportDateAndTimeFromString(string _str);
+    string ExportDateAndTimeToString();
 
 
+    QDateTime getDateAndTimeObject() const;
+    void setDateAndTimeObject(const QDateTime &value);
 };
 
 #endif // DATE_H

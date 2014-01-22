@@ -9,9 +9,13 @@ class Meeting : public Event
         int durationOfMeeting;
 
     public:
-        Meeting(int _id, int _date, int _hour, string _message, string _place, int _duration);
+        Meeting(int _id, QDateTime _dataIczas, string _message, string _place, int _duration);
 
         virtual void printEventInfo();
+        string getPlaceOfMeeting() const;
+        void setPlaceOfMeeting(const string &value);
+        int getDurationOfMeeting() const;
+        void setDurationOfMeeting(int value);
 };
 
 #endif // MEETING_H
