@@ -71,15 +71,14 @@ int main()
     //            string _file = mainVector[_id-1].fileName;
                 storage.userDataImport(currentUser,_file);
 
-                int choice2;
                 do
                 {
                 clearScreen();
                 loggedAs();
                 cout << currentUser.getUserName() << endl << endl;
-                choice2 = menuLogged();
+                choice = menuLogged();
 
-                switch (choice2) {
+                switch (choice) {
                 case 1: //mainMenu-menuLogged-wyswietl kalendarz
                 {
                     do
@@ -259,12 +258,11 @@ int main()
                     break;
                 }
                 }
-                while(choice2!=4);
+                while(choice!=4);
 
             }
-
-        }
             break;
+        }
 
 
         case 2:  //mainMenu-zaloz konto
