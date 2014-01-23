@@ -19,6 +19,9 @@
 #include <vector>
 #include <fstream>
 
+#define MIN_YEAR_ACCEPTED 1900
+#define MAX_YEAR_ACCEPTED 2100
+
 
 using namespace std;
 
@@ -38,7 +41,6 @@ int main()
     do
     {
 
-                                                                //wyswitlenie menu glownego
         choice = mainMenu();                                    //1 - zaloguj sie
                                                                 //2 - zaloz konto
         switch (choice) {                                       //3 - wyjscie z programu
@@ -71,6 +73,7 @@ int main()
     //            string _file = mainVector[_id-1].fileName;
                 storage.userDataImport(currentUser,_file);
 
+                int choice;
                 do
                 {
                 clearScreen();
@@ -81,6 +84,7 @@ int main()
                 switch (choice) {
                 case 1: //mainMenu-menuLogged-wyswietl kalendarz
                 {
+                            int choice;
                     do
                     {
                         clearScreen();
@@ -141,6 +145,7 @@ int main()
 
                 case 2: //mainMenu-menuLogged-wyswietl zdarzenia
                 {
+                            int choice;
                     do
                     {
                         clearScreen();
@@ -238,21 +243,84 @@ int main()
                 }
 
                 case 3: //mainMenu-menuLogged-dodaj zdarzenia
-                {
+                        {
 
-                      do{
+                            int choice;
+                            do{
+                              clearScreen();
+                              choice = menuAddEvent();
+                              clearScreen();
+                              int year, month, day, hour, min, duration, daysInMonth;
+                              string place, message;
 
-                      clearScreen();
-                      int choice = menuAddEvent();
-    //                  currentUser.addEvent(choice,);
+                              if(choice==4) break;
+
+                              if(choice == 1) cout << "Dodajesz spotkanie" << endl << endl;
+                              else if(choice == 2) cout << "Dodajesz zadanie" << endl << endl;
+                              else if(choice == 3) cout << "Dodajesz notatke" << endl << endl;
+
+            //                  if ( (choice != 3) && (choice != 4) ) {
+                                      if ( choice != 3 ) {
+                                      cout << "Wczytywanie daty i czasu ";
+
+                                      if (choice == 1) {
+                                              cout << "rozpoczecia spotkania.";
+                                          }else
+                                          cout << "wykonania zadania.";
+                                      do{
+                                      cout<< "\nPodaj rok : ";
+                                      year = getIntegerFromConsole();
+                                      }while( !(year != 0 && year > MIN_YEAR_ACCEPTED && year < MAX_YEAR_ACCEPTED)  );
+                                      do{
+                                            cout << "Podaj miesiac : ";
+                                            month = getIntegerFromConsole();
+                                      }while(!(month > 0 && month < 13));
+
+                                      coreDate.setDate(1,month,year);
+                                      daysInMonth = coreDate.getDaysInMonth();
+
+                                      do{
+                                            cout << "Podaj dzien : ";
+                                            day = getIntegerFromConsole();
+                                      }while(!(day > 0 && day <= daysInMonth));
+
+                                      do{
+                                            cout << "Podaj godzine : ";
+                                            hour = getIntegerFromConsole();
+                                      }while(!(hour >= 0 && hour < 24) );
+
+                                      do{
+                                              cout << "Podaj minuty : ";
+                                              min = getIntegerFromConsole();
+                                      }while(!(min >= 0 && min < 60) );
+
+                                      coreDate.setDate(day,month,year);
+                                      coreDate.setTime(hour,min);
+
+                              }else coreDate.setCurrentDateAndTime();
+            //                    }else if ( choice !=4 ) coreDate.setCurrentDateAndTime();
 
 
+                              if (choice == 1) {
+                                      cout << "Podaj miejsce spotkania : ";
+                                      cin >> place;
+                                      do{
+                                      cout << "Podaj czas trwania spotkania (w godz) : ";
+                                      duration = getIntegerFromConsole();
+                                      }while(!(duration >=0 && duration <=24));
+                              }
 
+                              if(choice == 1) cout << "Podaj dodatkowe informacje : " ;
+                              else if(choice == 3) cout << "Wpisz tresc notatki :" ;
+                              else if(choice == 2) cout << "Wpisz co masz do zrobienia :" ;
 
+                              cin >> message;
+                              currentUser.addEvent(choice,coreDate.getDateAndTimeObject(),message,place,duration);
+                              currentUser.displayEvents();
+                              storage.userDataExport(currentUser);
 
-
-                      }while(choice != 4);
-                }
+                              }while(true);
+                        }
 
                 default:
                     break;

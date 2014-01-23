@@ -24,12 +24,6 @@ int getIntegerFromConsole()
     return x;
 }
 
-string getStringFromConsole()
-{
-    string tmp;
-    getline(cin,tmp);
-    return tmp;
-}
 
 int convertStringToInt(string _str)
 {
@@ -105,7 +99,7 @@ int menuShowEvents()
 
 int menuAddEvent()
 {
-    cout << "Menu - dodaj zdarzenie" << endl;
+    cout << "Menu - dodaj zdarzenie" << endl<< endl;
     cout << "1. Spotkanie" << endl;
     cout << "2. Zadanie" << endl;
     cout << "3. Notatka" << endl;

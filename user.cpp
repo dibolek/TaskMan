@@ -76,7 +76,7 @@ void User::addEvent(int typeOfEvent, QDateTime _dataIczas, string message, strin
     bool val=1;
     int id;
 
-    while (val == 1) {
+    while (val) {
             val=0;
             id = createRandomValue(999,100);
 
