@@ -56,9 +56,9 @@ void loggedAs()
 int menuLogged()
 {
     int choice;
-    system("cls");
 
-    cout << "Aplikacja Kalendarz" << endl << endl;
+
+
     cout << "Menu" << endl;
     cout << "1. Wyswietl kalendarz" << endl;
     cout << "2. Wyswietl zdarzenia" << endl;
@@ -75,7 +75,7 @@ int menuLogged()
 int menuShowCalendar()
 {
     int choice;
-    system("cls");
+
 
     cout << "Menu - wyswietl kalendarz" << endl;
     cout << "1. Wyswietl aktualny miesiac" << endl;

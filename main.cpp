@@ -25,8 +25,12 @@ int main()
     AllUsers users;
     DataStorage storage;
     User currentUser;
-    vector<UsersListStruct> mainVector = users.getUsersVector();
+    vector<UsersListStruct> mainVector;
+    vector<Event*> eventVectorTmp;
     storage.allUsersVectorImport(mainVector,"users.txt");
+
+    users.setUsersVector(mainVector);
+
     Date coreDate;
     Calendar kalendarz;
 
@@ -53,25 +57,28 @@ int main()
             cin >> _id;
 
             string _file = mainVector[_id-1].fileName;
-            //Storage.userDataImport(currentUser,_file);
+            storage.userDataImport(currentUser,_file);
 
             do
             {
-                                                                //wyswietlenie menu dla zalogowanego
-                                                                //1 - wyswietl kalendarz
-            loggedAs();                                         //2 - wyswietl zdarzenia
-            cout << currentUser.getUserName();                  //3 - dodaj zdarzenie
-            choice = menuLogged();                              //4 - wyloguj sie
+
+            system("cls");
+            loggedAs();
+            cout << currentUser.getUserName();
+            choice = menuLogged();
+
+
 
             switch (choice) {
             case 1: //mainMenu-menuLogged-wyswietl kalendarz
             {
                 do
                 {
-                                                                //wyswietlenie menu dla kalendarza
-                    loggedAs();                                 //1 - wyswietl aktualny miesiac
-                    cout << currentUser.getUserName();          //2 - wyswietl konkretny miesiac
-                    choice = menuShowCalendar();                //3 - cofnij
+                    system("cls");
+
+                    loggedAs();
+                    cout << currentUser.getUserName();
+                    choice = menuShowCalendar();
 
                     switch (choice) {
                     case 1: //mainMenu-menuLogged-wyswietl kalendarz-wyswietl aktualny miesiac
@@ -125,7 +132,7 @@ int main()
             {
                 do
                 {
-                                                                //wyswietlenie menu dla zdarzen
+                    system("cls");
                     loggedAs();                                 //1 - wyswietl najblizsze
                     cout << currentUser.getUserName();          //2 - wyswietl z danego miesiaca
                     choice = menuShowEvents();                  //3 - cofnij
@@ -133,6 +140,31 @@ int main()
                     switch (choice) {
                     case 1: //mainMenu-menuLogged-wyswietl zdarzenia-wyswietl najblizsze
                     {
+                        system("cls");
+                        loggedAs();
+                        cout << currentUser.getUserName() << endl << endl;
+
+                        QDateTime tmpDate = QDateTime::currentDateTime();
+                        tmpDate = tmpDate.addDays(14);
+
+                        QDateTime tmpDate2 = QDateTime::currentDateTime();
+                        eventVectorTmp = currentUser.getEventsVector();
+                        Event* p_tmp = 0;
+                        for ( vector<Event*>::iterator itr = eventVectorTmp.begin(), end = eventVectorTmp.end(); itr != end; ++itr){
+                                p_tmp = (*itr);
+                                if ( p_tmp->getDataIczas() > tmpDate2 && p_tmp->getDataIczas() < tmpDate )
+                                    {
+                                        p_tmp->printEventInfo();
+                                    }
+                            }
+
+
+                        cin.get();
+                        cin.get();
+
+
+
+
 
                         break;
                     }
@@ -140,7 +172,7 @@ int main()
                         break;
                     }
                 }
-                while(choice!+3);
+                while(choice!=3);
                 break;
             }
 
