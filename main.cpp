@@ -5,6 +5,7 @@
 #include <QtCore/qdatetime.h>
 #include <calendar.h>
 //#include <QtCore/QDate>
+#include <date.h>
 
 #include "date.h"
 //#include "datastorage.h"
@@ -157,15 +158,52 @@ int main()
                                         p_tmp->printEventInfo();
                                     }
                             }
-
-
                         cin.get();
                         cin.get();
+                        break;
+                    }
+                    case 2:
+                    {
+                        system("cls");
+                        loggedAs();
+                        cout << currentUser.getUserName() << endl << endl;
+
+                        //zrobic pobieranie daty i na jej podstawie obliczyc poczatek i koneic miesiaca
+
+                        string data;
+                        coreDate.setCurrentDateAndTime();
+
+                        cout << "Podaj date ( dd-MM-yyyy ): ";
+                        cin >> data;
+
+                        coreDate.setDateFromString(data);
+
+                        int day = coreDate.getDateAndTimeObject().date().day();
+                        cout << "dzien miesiaca: " << day << endl;
+                        QDateTime tmpDate = coreDate.getDateAndTimeObject().addDays(-day+1);
+                        tmpDate.time().setHMS(23,59,59);    //trzeba ustawic godziny na 00:00 i 23:59
+                        cout << tmpDate.toString("hh:mm").toStdString() << endl;
+                        cout << tmpDate.toString("dd-MM-yyyy hh:mm").toStdString() << endl;
 
 
+                        int days = coreDate.getDateAndTimeObject().date().daysInMonth();
+                        cout << "ile dni w miesiacu: " << days << endl;
+                        QDateTime tmpDate2 = tmpDate.addDays(days-1);
+                        tmpDate.fromString("23:59","hh:mm");        //trzeba ustawic godziny na 00:00 i 23:59
+                        cout << tmpDate2.toString("dd-MM-yyyy hh:mm").toStdString() << endl;
 
 
-
+                        eventVectorTmp = currentUser.getEventsVector();
+                        Event* p_tmp = 0;
+                        for ( vector<Event*>::iterator itr = eventVectorTmp.begin(), end = eventVectorTmp.end(); itr != end; ++itr){
+                                p_tmp = (*itr);
+                                if ( p_tmp->getDataIczas() >= tmpDate && p_tmp->getDataIczas() <= tmpDate2 )
+                                    {
+                                        p_tmp->printEventInfo();
+                                    }
+                            }
+                        cin.get();
+                        cin.get();
                         break;
                     }
                     default:
