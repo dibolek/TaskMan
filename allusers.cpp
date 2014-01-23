@@ -61,12 +61,9 @@ User AllUsers::addUser(string uName)
 
 void AllUsers::removeUser(int id)
 {
-    usersVector.erase(usersVector.begin() + (id -1));
     string tmpStr = usersVector[id-1].fileName;
-    char* fName = new char[tmpStr.size()+1];
-    copy(tmpStr.begin(),tmpStr.end(),fName);
-    fName[tmpStr.size()]='\0';
-    remove(fName);
+    usersVector.erase(usersVector.begin() + (id -1));
+    remove(tmpStr.c_str());
 }
 
 int AllUsers::getUserCount()

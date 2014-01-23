@@ -380,8 +380,7 @@ int main()
                 if( _id == (usersCount+1) ) break;
 
                 users.removeUser(_id);
-                vector<UsersListStruct> uVecTmp;
-                uVecTmp = users.getUsersVector();
+                vector<UsersListStruct> uVecTmp = users.getUsersVector();
                 storage.allUsersVectorExport(uVecTmp,"users.txt");
 
             }
