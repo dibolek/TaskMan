@@ -11,9 +11,9 @@ Note::Note()
 
 void Note::printEventInfo()
 {
-        cout<< "(" << eventID << ") "
-            << "Notatka dodana dnia "
+        cout<< "( Notatka ) "
+            << "  Dodana dnia "
             <<  dataIczas.toString("dd-MM-yyyy' o godzinie 'hh:mm").toStdString()
-            << "\n\tTresc: " << message <<endl;
+            << ",\n                 Tresc: " << message <<endl;
 
 }

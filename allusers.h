@@ -20,7 +20,6 @@ class AllUsers
 {
     private:
         vector<UsersListStruct> usersVector;
-//        User currentUser;
 
     public:
 //--------------constructors and destructor section ----------------------------
@@ -31,9 +30,6 @@ class AllUsers
         vector<UsersListStruct> getUsersVector() const;
         void setUsersVector(const vector<UsersListStruct> &value);
 
-//        User getCurrentUser() const;
-        //        void setCurrentUser(const User &value);
-
 //---------------------- other methods -----------------------------------------
         void addUser(User &user,string uName);
         void removeUser(int id);
@@ -41,19 +37,6 @@ class AllUsers
 
         void displayOptions();
         void displayUsersInfo();
-
-};
-
-class DataStorage
-{
-    public:
-        DataStorage();
-
-        void userDataExport(User & usr);
-        void userDataImport(User & usr, string _nazwaPliku);
-
-        void allUsersVectorExport(vector<UsersListStruct> &vec, string nazwapliku);
-        void allUsersVectorImport(vector<UsersListStruct> &vec, string nazwapliku);
 
 };
 

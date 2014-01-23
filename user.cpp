@@ -70,9 +70,23 @@ void User::setFileName(const string &value)
 
 //---------------------- other methods -----------------------------------------
 
-void User::addEvent(int typeOfEvent, int id, QDateTime _dataIczas, string message, string place, int duration)
+void User::addEvent(int typeOfEvent, QDateTime _dataIczas, string message, string place, int duration)
 {
     Event * eventTMP = 0;
+    bool val=1;
+    int id;
+
+    while (val == 1) {
+            val=0;
+            id = createRandomValue(999,100);
+
+            for (vector<Event*>::iterator itr = eventsVector.begin(), end = eventsVector.end(); itr != end; ++itr) {
+                    if ( id == (*itr)->getEventID() ) {
+                            val = 1;
+                            break;
+                    }//if
+            }//for
+    }//while
 
     switch (typeOfEvent) {
         case 1:
@@ -89,11 +103,12 @@ void User::addEvent(int typeOfEvent, int id, QDateTime _dataIczas, string messag
         }
 
     eventsVector.push_back(eventTMP);
+
 }
 
-void User::removeEvent()
+void User::removeEvent(int id)
 {
-
+    eventsVector.erase(eventsVector.begin() + (id - 1));
 }
 
 int User::getEventsCount()
@@ -116,19 +131,16 @@ int User::whatTypeEventIs(Event *p_Event)
     return 4 ;  // 4 - event
 }
 
-void User::sortEvents()
+void User::sortEventsByDate()
 {
-
+    sort(eventsVector.begin(),eventsVector.end(),Event::PointerCompare());
 }
 
 void User::displayEvents()
 {
-    cout<<"Wydarzenia :\n";
-
     int j(0);
     for ( vector<Event *>::iterator itr = eventsVector.begin(), end = eventsVector.end() ; itr != end; ++itr ) {
-            cout<<++j<<". "
-                <<whatTypeEventIs(*itr);
+            cout<<++j<<". ";
             (*itr)->printEventInfo();
             cout<<endl;
         }
@@ -138,4 +150,5 @@ void User::saveUserData()
 {
 
 }
+
 

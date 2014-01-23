@@ -2,13 +2,14 @@
 #include "meeting.h"
 #include "todolist.h"
 #include "note.h"
+#include "functions.h"
 #include <QtCore/qdatetime.h>
 #include <calendar.h>
 //#include <QtCore/QDate>
 #include <date.h>
 
 #include "date.h"
-//#include "datastorage.h"
+#include "datastorage.h"
 
 //#include <qstring>
 
@@ -26,11 +27,8 @@ int main()
     AllUsers users;
     DataStorage storage;
     User currentUser;
-    vector<UsersListStruct> mainVector;
     vector<Event*> eventVectorTmp;
-    storage.allUsersVectorImport(mainVector,"users.txt");
-
-    users.setUsersVector(mainVector);
+    users.setUsersVector( storage.allUsersVectorImport("users.txt") );
 
     Date coreDate;
     Calendar kalendarz;
@@ -46,36 +44,36 @@ int main()
         switch (choice) {                                       //3 - wyjscie z programu
         case 1: //mainMenu-zaloguj sie
         {
-            system("cls");
+        int _id;
+        int usersCount = users.getUserCount();
+            do{
+            clearScreen();
             cout << "Wybierz uzytkownika:" << endl << endl;
-
             users.displayUsersInfo();
-
-            int _id;
-
+            cout << endl;
+            cout << usersCount + 1 << ". Powrot do menu glownego.";
             cout << endl << endl << "$: ";
+            _id = getIntegerFromConsole();
+            }while( !(_id > 0 && _id <= (usersCount + 1) ) );
 
-            cin >> _id;
-
-            string _file = mainVector[_id-1].fileName;
+            if( _id == (usersCount+1) ) break;
+            string _file = users.getUsersVector()[_id-1].fileName;
+//            string _file = mainVector[_id-1].fileName;
             storage.userDataImport(currentUser,_file);
 
             do
             {
-
-            system("cls");
+            clearScreen();
             loggedAs();
             cout << currentUser.getUserName();
             choice = menuLogged();
-
-
 
             switch (choice) {
             case 1: //mainMenu-menuLogged-wyswietl kalendarz
             {
                 do
                 {
-                    system("cls");
+                    clearScreen();
 
                     loggedAs();
                     cout << currentUser.getUserName();
@@ -98,7 +96,7 @@ int main()
                         break;
                     case 2: //mainMenu-menuLogged-wyswietl kalendarz-wyswietl konkretny miesiac
                     {
-                        system("cls");
+                        clearScreen();
                         string _date;
                         loggedAs();
                         cout << currentUser.getUserName() << endl << endl;
@@ -106,7 +104,7 @@ int main()
                         cout << "Podaj date ( dd-MM-yyyy ): ";
                         cin >> _date;
 
-                        system("cls");
+                        clearScreen();
 
                         coreDate.setDateFromString(_date);
                         kalendarz.displayCalendar(coreDate);
@@ -133,7 +131,7 @@ int main()
             {
                 do
                 {
-                    system("cls");
+                    clearScreen();
                     loggedAs();                                 //1 - wyswietl najblizsze
                     cout << currentUser.getUserName();          //2 - wyswietl z danego miesiaca
                     choice = menuShowEvents();                  //3 - cofnij
@@ -141,7 +139,7 @@ int main()
                     switch (choice) {
                     case 1: //mainMenu-menuLogged-wyswietl zdarzenia-wyswietl najblizsze
                     {
-                        system("cls");
+                        clearScreen();
                         loggedAs();
                         cout << currentUser.getUserName() << endl << endl;
 
@@ -151,10 +149,12 @@ int main()
                         QDateTime tmpDate2 = QDateTime::currentDateTime();
                         eventVectorTmp = currentUser.getEventsVector();
                         Event* p_tmp = 0;
+                        int licznik = 0;
                         for ( vector<Event*>::iterator itr = eventVectorTmp.begin(), end = eventVectorTmp.end(); itr != end; ++itr){
                                 p_tmp = (*itr);
                                 if ( p_tmp->getDataIczas() > tmpDate2 && p_tmp->getDataIczas() < tmpDate )
                                     {
+                                        cout << ++licznik << ". ";
                                         p_tmp->printEventInfo();
                                     }
                             }
@@ -164,7 +164,7 @@ int main()
                     }
                     case 2:
                     {
-                        system("cls");
+                        clearScreen();
                         loggedAs();
                         cout << currentUser.getUserName() << endl << endl;
 
@@ -214,6 +214,23 @@ int main()
                 break;
             }
 
+            case 3: //mainMenu-menuLogged-dodaj zdarzenia
+            {
+
+                  do{
+
+                  clearScreen();
+                  int choice = menuAddEvent();
+//                  currentUser.addEvent(choice,);
+
+
+
+
+
+
+                  }while(choice != 4);
+            }
+
             default:
                 break;
             }
@@ -221,8 +238,17 @@ int main()
             while(choice!=4);
 
 
+
+
+
             break;
         }
+
+        case 2:  //mainMenu-zaloz konto
+        {
+
+        }
+
         default:
             break;
         }

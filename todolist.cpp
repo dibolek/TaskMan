@@ -11,9 +11,9 @@ ToDoList::ToDoList()
 
 void ToDoList::printEventInfo()
 {
-        cout<< "(" << eventID << ") "
-        << "Dnia " << dataIczas.toString("dd-MM-yyyy', o godzinie 'hh:mm").toStdString()
-        << "\n\tMasz do zrobienia: " << message
+        cout<< "( Zadanie ) "
+        << "  Dnia " << dataIczas.toString("dd-MM-yyyy', o godzinie 'hh:mm").toStdString()
+        << ",\n                 Masz do zrobienia: " << message
         <<endl;
 
 }

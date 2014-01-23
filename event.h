@@ -26,6 +26,11 @@ class Event
         void setMessage(const string &value);
         QDateTime getDataIczas() const;
         void setDataIczas(const QDateTime &value);
+        struct PointerCompare{
+                bool operator()(const Event* ls, const Event* rs){
+                    return (*ls).dataIczas < (*rs).dataIczas;
+                };
+        };
 };
 
 #endif // EVENT_H

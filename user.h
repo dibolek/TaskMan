@@ -1,12 +1,15 @@
 #ifndef USER_H
 #define USER_H
 #include "functions.h"
+#include "event.h"
 #include "meeting.h"
 #include "todolist.h"
 #include "note.h"
 
 #include <vector>
 #include <iostream>
+#include <algorithm>
+#include <QDateTime>
 
 using namespace std;
 
@@ -17,6 +20,11 @@ class User
         string userName;
         string fileName;
         vector<Event *> eventsVector;
+//        struct PointerCompare{
+//                bool operator()(const Event* ls, const Event* rs){
+//                    return (*ls).getDataIczas() < (*rs).getDataIczas();
+//                };
+//        };
 
     public:
 //--------------constructors and destructor section ----------------------------
@@ -35,11 +43,11 @@ class User
         void setFileName(const string &value);
 
 //---------------------- other methods -----------------------------------------
-        void addEvent(int typeOfEvent, int id, QDateTime _dataIczas, string message, string place, int duration);
-        void removeEvent();
+        void addEvent(int typeOfEvent, QDateTime _dataIczas, string message, string place, int duration);
+        void removeEvent(int id);
         int getEventsCount();
         int whatTypeEventIs(Event * p_Event);
-        void sortEvents();
+        void sortEventsByDate();
         void displayEvents();
         void saveUserData();
 

@@ -21,7 +21,7 @@ SOURCES += main.cpp \
     calendar.cpp \
     date.cpp \
     functions.cpp \
-    dataIO.cpp
+    datastorage.cpp
 
 HEADERS += \
     allusers.h \
@@ -33,5 +33,5 @@ HEADERS += \
     calendar.h \
     date.h \
     functions.h \
-    dataIO.h
+    datastorage.h
 

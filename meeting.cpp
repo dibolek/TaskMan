@@ -31,10 +31,10 @@ Meeting::Meeting()
 
 void Meeting::printEventInfo()
 {
-    cout<< "(" << eventID << ") "
+    cout<< "( Spotkanie ) "
         << "Masz spotkanie w "<< placeOfMeeting << ", dnia "
         << dataIczas.toString("dd-MM-yyyy', o godzinie 'hh:mm").toStdString()
-        << ", ktore trwac bedzie " << durationOfMeeting
-        << " godzin(y).\n\tDodatkowe informacje: " << message <<endl;
+        << ",\n                 ktore trwac bedzie " << durationOfMeeting
+        << " godzin(y).\n                 Dodatkowe informacje: " << message <<endl;
 }
 
