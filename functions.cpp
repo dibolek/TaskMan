@@ -49,7 +49,8 @@ int mainMenu()
     cout << "Menu" << endl;
     cout << "1. Zaloguj sie" << endl;
     cout << "2. Zaloz konto" << endl;
-    cout << "3. Wyjdz" << endl << endl;
+    cout << "3. Usun uzytkownika" << endl;
+    cout << "4. Wyjdz" << endl << endl;
     cout << "$: ";
 
     int choice = getIntegerFromConsole();
@@ -94,7 +95,8 @@ int menuShowEvents()
     cout << "Menu - wyswietl zdarzenia" << endl;
     cout << "1. Wyswietl najblizsze" << endl;
     cout << "2. Wyswietl z danego miesiac" << endl;
-    cout << "3. cofnij" << endl << endl;
+    cout << "3. Wyswietl z danego miesiac" << endl;
+    cout << "4. cofnij" << endl << endl;
     cout << "$: ";
 
     int choice = getIntegerFromConsole();

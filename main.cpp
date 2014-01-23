@@ -44,216 +44,287 @@ int main()
         switch (choice) {                                       //3 - wyjscie z programu
         case 1: //mainMenu-zaloguj sie
         {
-        int _id;
-        int usersCount = users.getUserCount();
-            do{
-            clearScreen();
-            cout << "Wybierz uzytkownika:" << endl << endl;
-            users.displayUsersInfo();
-            cout << endl;
-            cout << usersCount + 1 << ". Powrot do menu glownego.";
-            cout << endl << endl << "$: ";
-            _id = getIntegerFromConsole();
-            }while( !(_id > 0 && _id <= (usersCount + 1) ) );
-
-            if( _id == (usersCount+1) ) break;
-            string _file = users.getUsersVector()[_id-1].fileName;
-//            string _file = mainVector[_id-1].fileName;
-            storage.userDataImport(currentUser,_file);
-
-            do
+            int _id;
+            int usersCount = users.getUserCount();
+            if ( users.getUsersVector().empty() )
             {
-            clearScreen();
-            loggedAs();
-            cout << currentUser.getUserName();
-            choice = menuLogged();
-
-            switch (choice) {
-            case 1: //mainMenu-menuLogged-wyswietl kalendarz
+                clearScreen();
+                cout << "Brak uzytkownikow. Zaloz konto." << endl;
+                cout << "Nacisnij dowolny klawisz...";
+                cin.get();
+                cin.get();
+            }
+            else
             {
+                do{
+                clearScreen();
+                cout << "Wybierz uzytkownika:" << endl << endl;
+                users.displayUsersInfo();
+                cout << endl;
+                cout << usersCount + 1 << ". Powrot do menu glownego.";
+                cout << endl << endl << "$: ";
+                _id = getIntegerFromConsole();
+                }while( !(_id > 0 && _id <= (usersCount + 1) ) );
+
+                if( _id == (usersCount+1) ) break;
+                string _file = users.getUsersVector()[_id-1].fileName;
+    //            string _file = mainVector[_id-1].fileName;
+                storage.userDataImport(currentUser,_file);
+
                 do
                 {
-                    clearScreen();
+                clearScreen();
+                loggedAs();
+                cout << currentUser.getUserName() << endl << endl;
+                choice = menuLogged();
 
-                    loggedAs();
-                    cout << currentUser.getUserName();
-                    choice = menuShowCalendar();
-
-                    switch (choice) {
-                    case 1: //mainMenu-menuLogged-wyswietl kalendarz-wyswietl aktualny miesiac
-                        system ("cls");
-                        loggedAs();
-                        cout << currentUser.getUserName() << endl << endl;
-
-                        coreDate.setCurrentDateAndTime();
-
-                        kalendarz.displayCalendar(coreDate);
-
-                        cout << "Nacisnij dowolny klawisz ...";
-
-                        cin.get();
-                        cin.get();
-                        break;
-                    case 2: //mainMenu-menuLogged-wyswietl kalendarz-wyswietl konkretny miesiac
-                    {
-                        clearScreen();
-                        string _date;
-                        loggedAs();
-                        cout << currentUser.getUserName() << endl << endl;
-
-                        cout << "Podaj date ( dd-MM-yyyy ): ";
-                        cin >> _date;
-
-                        clearScreen();
-
-                        coreDate.setDateFromString(_date);
-                        kalendarz.displayCalendar(coreDate);
-
-                        cout << endl << endl << "Nacisnij dowolny klawisz...";
-                        cin.get();
-                        cin.get();
-
-
-                        break;
-                    }
-                    default:
-                        cout << "Nie ma takiej opcji!";
-                        cin.get();
-                        cin.get();
-                        break;
-                    }
-                }
-                while(choice != 3);
-                break;
-            }
-
-            case 2: //mainMenu-menuLogged-wyswietl zdarzenia
-            {
-                do
+                switch (choice) {
+                case 1: //mainMenu-menuLogged-wyswietl kalendarz
                 {
-                    clearScreen();
-                    loggedAs();                                 //1 - wyswietl najblizsze
-                    cout << currentUser.getUserName();          //2 - wyswietl z danego miesiaca
-                    choice = menuShowEvents();                  //3 - cofnij
-
-                    switch (choice) {
-                    case 1: //mainMenu-menuLogged-wyswietl zdarzenia-wyswietl najblizsze
+                    do
                     {
                         clearScreen();
+
                         loggedAs();
                         cout << currentUser.getUserName() << endl << endl;
+                        choice = menuShowCalendar();
 
-                        QDateTime tmpDate = QDateTime::currentDateTime();
-                        tmpDate = tmpDate.addDays(14);
+                        switch (choice) {
+                        case 1: //mainMenu-menuLogged-wyswietl kalendarz-wyswietl aktualny miesiac
+                            system ("cls");
+                            loggedAs();
+                            cout << currentUser.getUserName() << endl << endl;
 
-                        QDateTime tmpDate2 = QDateTime::currentDateTime();
-                        eventVectorTmp = currentUser.getEventsVector();
-                        Event* p_tmp = 0;
-                        int licznik = 0;
-                        for ( vector<Event*>::iterator itr = eventVectorTmp.begin(), end = eventVectorTmp.end(); itr != end; ++itr){
-                                p_tmp = (*itr);
-                                if ( p_tmp->getDataIczas() > tmpDate2 && p_tmp->getDataIczas() < tmpDate )
-                                    {
-                                        cout << ++licznik << ". ";
-                                        p_tmp->printEventInfo();
-                                    }
-                            }
-                        cin.get();
-                        cin.get();
-                        break;
+                            coreDate.setCurrentDateAndTime();
+
+                            kalendarz.displayCalendar(coreDate);
+
+                            cout << "Nacisnij dowolny klawisz ...";
+
+                            cin.get();
+                            cin.get();
+                            break;
+                        case 2: //mainMenu-menuLogged-wyswietl kalendarz-wyswietl konkretny miesiac
+                        {
+                            clearScreen();
+                            string _date;
+                            loggedAs();
+                            cout << currentUser.getUserName() << endl << endl;
+
+                            cout << "Podaj date ( dd-MM-yyyy ): ";
+                            cin >> _date;
+
+                            clearScreen();
+
+                            loggedAs();
+                            cout << currentUser.getUserName() << endl << endl;
+
+                            coreDate.setDateFromString(_date);
+                            kalendarz.displayCalendar(coreDate);
+
+                            cout << endl << endl << "Nacisnij dowolny klawisz...";
+                            cin.get();
+                            cin.get();
+
+
+                            break;
+                        }
+                        default:
+                            cout << "Nie ma takiej opcji!";
+                            cin.get();
+                            break;
+                        }
                     }
-                    case 2:
-                    {
-                        clearScreen();
-                        loggedAs();
-                        cout << currentUser.getUserName() << endl << endl;
-
-                        //zrobic pobieranie daty i na jej podstawie obliczyc poczatek i koneic miesiaca
-
-                        string data;
-                        coreDate.setCurrentDateAndTime();
-
-                        cout << "Podaj date ( dd-MM-yyyy ): ";
-                        cin >> data;
-
-                        coreDate.setDateFromString(data);
-
-                        int day = coreDate.getDateAndTimeObject().date().day();
-                        cout << "dzien miesiaca: " << day << endl;
-                        QDateTime tmpDate = coreDate.getDateAndTimeObject().addDays(-day+1);
-                        tmpDate.time().setHMS(23,59,59);    //trzeba ustawic godziny na 00:00 i 23:59
-                        cout << tmpDate.toString("hh:mm").toStdString() << endl;
-                        cout << tmpDate.toString("dd-MM-yyyy hh:mm").toStdString() << endl;
-
-
-                        int days = coreDate.getDateAndTimeObject().date().daysInMonth();
-                        cout << "ile dni w miesiacu: " << days << endl;
-                        QDateTime tmpDate2 = tmpDate.addDays(days-1);
-                        tmpDate.fromString("23:59","hh:mm");        //trzeba ustawic godziny na 00:00 i 23:59
-                        cout << tmpDate2.toString("dd-MM-yyyy hh:mm").toStdString() << endl;
-
-
-                        eventVectorTmp = currentUser.getEventsVector();
-                        Event* p_tmp = 0;
-                        for ( vector<Event*>::iterator itr = eventVectorTmp.begin(), end = eventVectorTmp.end(); itr != end; ++itr){
-                                p_tmp = (*itr);
-                                if ( p_tmp->getDataIczas() >= tmpDate && p_tmp->getDataIczas() <= tmpDate2 )
-                                    {
-                                        p_tmp->printEventInfo();
-                                    }
-                            }
-                        cin.get();
-                        cin.get();
-                        break;
-                    }
-                    default:
-                        break;
-                    }
+                    while(choice != 3);
+                    break;
                 }
-                while(choice!=3);
-                break;
+
+                case 2: //mainMenu-menuLogged-wyswietl zdarzenia
+                {
+                    do
+                    {
+                        clearScreen();
+                        loggedAs();                                 //1 - wyswietl najblizsze
+                        cout << currentUser.getUserName() << endl << endl;          //2 - wyswietl z danego miesiaca
+                        choice = menuShowEvents();                  //3 - cofnij
+
+                        switch (choice) {
+                        case 1: //mainMenu-menuLogged-wyswietl zdarzenia-wyswietl najblizsze
+                        {
+                            clearScreen();
+                            loggedAs();
+                            cout << currentUser.getUserName() << endl << endl;
+
+                            QDateTime tmpDate = QDateTime::currentDateTime();
+                            tmpDate = tmpDate.addDays(14);
+
+                            QDateTime tmpDate2 = QDateTime::currentDateTime();
+                            eventVectorTmp = currentUser.getEventsVector();
+                            Event* p_tmp = 0;
+                            int licznik = 0;
+                            for ( vector<Event*>::iterator itr = eventVectorTmp.begin(), end = eventVectorTmp.end(); itr != end; ++itr){
+                                    p_tmp = (*itr);
+                                    if ( p_tmp->getDataIczas() > tmpDate2 && p_tmp->getDataIczas() < tmpDate )
+                                        {
+                                            cout << ++licznik << ". ";
+                                            p_tmp->printEventInfo();
+                                        }
+                                }
+                            cin.get();
+                            cin.get();
+                            break;
+                        }
+                        case 2:
+                        {
+                            clearScreen();
+                            loggedAs();
+                            cout << currentUser.getUserName() << endl << endl;
+
+                            //zrobic pobieranie daty i na jej podstawie obliczyc poczatek i koneic miesiaca
+
+                            string data;
+                            coreDate.setCurrentDateAndTime();
+
+                            //---------- obliczanie zakresu z podanej daty -----------
+
+
+
+                            cout << "Podaj date ( dd-MM-yyyy ): ";
+                            cin >> data;
+
+                            coreDate.setDateFromString(data);
+
+                            int day = coreDate.getDateAndTimeObject().date().day();
+
+                            QDateTime tmpDate = coreDate.getDateAndTimeObject().addDays(-day+1);
+                            tmpDate.setTime(QTime::fromString("00:00:01","hh:mm:ss"));
+
+                            int days = coreDate.getDateAndTimeObject().date().daysInMonth();
+
+                            QDateTime tmpDate2 = tmpDate.addDays(days-1);
+                            tmpDate2.setTime(QTime::fromString("23:59:59","hh:mm:ss"));
+
+
+                            //-------------- wyswietlenie zakresu i zdarzen --------------------
+
+                            system("cls");
+                            loggedAs();
+                            cout << currentUser.getUserName() << endl << endl;
+                            cout << "Wybrany zakres: ";
+                            cout << tmpDate.toString("dd-MM-yyyy hh:mm:ss").toStdString();
+                            cout << " - ";
+                            cout << tmpDate2.toString("dd-MM-yyyy hh:mm:ss").toStdString() << endl << endl;
+
+
+                            eventVectorTmp = currentUser.getEventsVector();
+                            Event* p_tmp = 0;
+                            for ( vector<Event*>::iterator itr = eventVectorTmp.begin(), end = eventVectorTmp.end(); itr != end; ++itr){
+                                    p_tmp = (*itr);
+                                    if ( p_tmp->getDataIczas() >= tmpDate && p_tmp->getDataIczas() <= tmpDate2 )
+                                        {
+                                            p_tmp->printEventInfo();
+                                        }
+                                }
+                            cin.get();
+                            cin.get();
+                            break;
+                        }
+                        default:
+                            break;
+                        }
+                    }
+                    while(choice!=3);
+                    break;
+                }
+
+                case 3: //mainMenu-menuLogged-dodaj zdarzenia
+                {
+
+                      do{
+
+                      clearScreen();
+                      int choice = menuAddEvent();
+    //                  currentUser.addEvent(choice,);
+
+
+
+
+
+
+                      }while(choice != 4);
+                }
+
+                default:
+                    break;
+                }
+                }
+                while(choice!=4);
+
             }
-
-            case 3: //mainMenu-menuLogged-dodaj zdarzenia
-            {
-
-                  do{
-
-                  clearScreen();
-                  int choice = menuAddEvent();
-//                  currentUser.addEvent(choice,);
-
-
-
-
-
-
-                  }while(choice != 4);
-            }
-
-            default:
-                break;
-            }
-            }
-            while(choice!=4);
-
-
-
-
-
             break;
         }
 
+
         case 2:  //mainMenu-zaloz konto
         {
+            clearScreen();
 
+            string name;
+
+            cout << "Podaj imie: ";
+            cin.get();
+            getline(cin,name);
+
+            User usrTmp = users.addUser(name);
+            storage.userDataExport(usrTmp);
+            vector<UsersListStruct> uVecTmp;
+            uVecTmp = users.getUsersVector();
+            storage.allUsersVectorExport(uVecTmp,"users.txt");
         }
+            break;
+
+        case 3:     //mainMenu-usun konto
+        {
+            clearScreen();
+
+            int _id;
+
+            if ( users.getUsersVector().empty() )
+            {
+                cout << "Brak uzytkownikow." << endl;
+                cout << "Nacisnij dowolny klawisz...";
+                cin.get();
+                cin.get();
+            }
+            else
+            {
+                int usersCount = users.getUserCount();
+                do{
+                cout << "Wybierz uzytkownika do usuniecia:" << endl << endl;
+                users.displayUsersInfo();
+                cout << endl;
+                cout << usersCount + 1 << ". Powrot do menu glownego.";
+                cout << endl << endl << "$: ";
+                _id = getIntegerFromConsole();
+
+                }while( !(_id > 0 && _id <= (usersCount + 1) ) );
+
+                if( _id == (usersCount+1) ) break;
+
+                users.removeUser(_id);
+                vector<UsersListStruct> uVecTmp;
+                uVecTmp = users.getUsersVector();
+                storage.allUsersVectorExport(uVecTmp,"users.txt");
+
+            }
+        }
+            break;
 
         default:
             break;
         }
     }
-    while(choice!=3);
+    while(choice!=4);
 
 
 

@@ -31,7 +31,7 @@ class AllUsers
         void setUsersVector(const vector<UsersListStruct> &value);
 
 //---------------------- other methods -----------------------------------------
-        void addUser(User &user,string uName);
+        User addUser(string uName);
         void removeUser(int id);
         int getUserCount();
 

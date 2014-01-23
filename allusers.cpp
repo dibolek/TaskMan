@@ -29,7 +29,7 @@ void AllUsers::setUsersVector(const vector<UsersListStruct> &value)
 
 //---------------------- other methods -----------------------------------------
 
-void AllUsers::addUser(User &user, string uName)
+User AllUsers::addUser(string uName)
 {
     bool value=1;
     int id;
@@ -53,14 +53,20 @@ void AllUsers::addUser(User &user, string uName)
     sout << id << ".txt";
     curUser.fileName = sout.str();
     usersVector.push_back(curUser);
+    User usrTmp(uName,id,curUser.fileName);
 
-    User userTmp(uName,id,curUser.fileName);
-    user=userTmp;
+    return usrTmp;
+
 }
 
 void AllUsers::removeUser(int id)
 {
     usersVector.erase(usersVector.begin() + (id -1));
+    string tmpStr = usersVector[id-1].fileName;
+    char* fName = new char[tmpStr.size()+1];
+    copy(tmpStr.begin(),tmpStr.end(),fName);
+    fName[tmpStr.size()]='\0';
+    remove(fName);
 }
 
 int AllUsers::getUserCount()
