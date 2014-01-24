@@ -6,15 +6,15 @@
 
 User::User(string name, int id, string fname)
 {
-    userName = name;
     userID = id;
+    userName = name;
     fileName = fname;
 }
 
 User::User()
 {
-    userName = "Unknown";
     userID = 0;
+    userName = "Unknown";
     fileName = "unknown.txt";
 }
 

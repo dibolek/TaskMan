@@ -86,10 +86,11 @@ int menuShowCalendar()
 
 int menuShowEvents()
 {
-    cout << "Menu - wyswietl zdarzenia" << endl;
+    cout << "Menu - wyswietl zdarzenia" << endl<< endl;
     cout << "1. Wyswietl najblizsze" << endl;
     cout << "2. Wyswietl z danego miesiaca" << endl;
-    cout << "3. Cofnij" << endl << endl;
+    cout << "3. Wyswietl wszystkie twoje zdarzenia" << endl;
+    cout << "4. Cofnij" << endl << endl;
     cout << "$: ";
 
     int choice = getIntegerFromConsole();

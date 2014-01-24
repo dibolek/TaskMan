@@ -30,6 +30,15 @@ int main()
     AllUsers users;
     DataStorage storage;
     User currentUser;
+
+    ifstream plik("users.txt");
+    if(!plik.is_open())
+    {
+        ofstream plik("users.txt");
+        plik << 0;
+    }
+    plik.close();
+
     vector<Event*> eventVectorTmp;
     users.setUsersVector( storage.allUsersVectorImport("users.txt") );
 
@@ -52,9 +61,7 @@ int main()
             {
                 clearScreen();
                 cout << "Brak uzytkownikow. Zaloz konto." << endl;
-                cout << "Nacisnij dowolny klawisz...";
-                cin.get();
-                cin.get();
+                pause();
             }
             else
             {
@@ -103,10 +110,7 @@ int main()
 
                             kalendarz.displayCalendar(coreDate);
 
-                            cout << "Nacisnij dowolny klawisz ...";
-
-                            cin.get();
-                            cin.get();
+                           pause();
                             break;
                         case 2: //mainMenu-menuLogged-wyswietl kalendarz-wyswietl konkretny miesiac
                         {
@@ -126,16 +130,15 @@ int main()
                             coreDate.setDateFromString(_date);
                             kalendarz.displayCalendar(coreDate);
 
-                            cout << endl << endl << "Nacisnij dowolny klawisz...";
-                            cin.get();
-                            cin.get();
+                            cout << endl << endl;
+                            pause();
 
 
                             break;
                         }
                         default:
                             cout << "Nie ma takiej opcji!";
-                            cin.get();
+                            pause();
                             break;
                         }
                     }
@@ -145,7 +148,15 @@ int main()
 
                 case 2: //mainMenu-menuLogged-wyswietl zdarzenia
                 {
-                            int choice;
+                            if(currentUser.getEventsCount()==0) {
+                                    clearScreen();
+                                    cout << "Nie masz zadnych zdarzen. Utworz nowe zdarzenia."<<endl;
+                                    pause();
+                                    break;
+                                }
+
+                                int choice;
+
                     do
                     {
                         clearScreen();
@@ -164,19 +175,26 @@ int main()
                             tmpDate = tmpDate.addDays(14);
 
                             QDateTime tmpDate2 = QDateTime::currentDateTime();
+                            tmpDate2 = tmpDate2.addSecs(-3600);
                             eventVectorTmp = currentUser.getEventsVector();
                             Event* p_tmp = 0;
                             int licznik = 0;
+                            bool niemazdarzen = 1;
                             for ( vector<Event*>::iterator itr = eventVectorTmp.begin(), end = eventVectorTmp.end(); itr != end; ++itr){
                                     p_tmp = (*itr);
                                     if ( p_tmp->getDataIczas() > tmpDate2 && p_tmp->getDataIczas() < tmpDate )
                                         {
-                                            cout << ++licznik << ". ";
+                                            niemazdarzen = 0;                                            cout << ++licznik << ". ";
                                             p_tmp->printEventInfo();
                                         }
                                 }
-                            cin.get();
-                            cin.get();
+                            if (niemazdarzen){
+                                    clearScreen();
+                                    cout << "Nie masz zadnych zdarzen w ciagu najblizszych 14 dni." << endl;
+                                };
+
+
+                            pause();
                             break;
                         }
                         case 2: //mainMenu-menuLogged-wyswietl zdarzenia-wyswietl z danego msc
@@ -225,15 +243,24 @@ int main()
                                             p_tmp->printEventInfo();
                                         }
                                 }
-                            cin.get();
-                            cin.get();
+                            pause();
                             break;
                         }
+                        case 3:
+
+                                clearScreen();
+                                loggedAs();
+                                cout << currentUser.getUserName() << endl << endl;
+
+                                currentUser.displayEvents();
+                                pause();
+
+                                break;
                         default:
                             break;
                         }
                     }
-                    while(choice!=3);
+                    while(choice!=4);
                     break;
                 }
 
@@ -298,7 +325,8 @@ int main()
 
                               if (choice == 1) {
                                       cout << "Podaj miejsce spotkania : ";
-                                      cin >> place;
+                                      cin.get();
+                                      getline(cin,place);
                                       do{
                                       cout << "Podaj czas trwania spotkania (w godz) : ";
                                       duration = getIntegerFromConsole();
@@ -309,8 +337,10 @@ int main()
                               else if(choice == 3) cout << "Wpisz tresc notatki :" ;
                               else if(choice == 2) cout << "Wpisz co masz do zrobienia :" ;
 
-                              cin >> message;
+                              cin.get();
+                              getline(cin,message);
                               currentUser.addEvent(choice,coreDate.getDateAndTimeObject(),message,place,duration);
+                              currentUser.sortEventsByDate();
                               currentUser.displayEvents();
                               storage.userDataExport(currentUser);
 
@@ -334,7 +364,7 @@ int main()
 
             string name;
 
-            cout << "Podaj imie: ";
+            cout << "Podaj nazwe uzytkownika: ";
             cin.get();
             getline(cin,name);
 
@@ -355,9 +385,7 @@ int main()
             if ( users.getUsersVector().empty() )
             {
                 cout << "Brak uzytkownikow." << endl;
-                cout << "Nacisnij dowolny klawisz...";
-                cin.get();
-                cin.get();
+                pause();
             }
             else
             {
