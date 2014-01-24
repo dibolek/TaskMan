@@ -62,9 +62,9 @@ QTime Date::getCurrentTime()
 }
 
 //ustawianie czasu przy wprowadzaniu osobno godziny, minuty i sekundy
-void Date::setTime( int hour, int minutes )
+void Date::setTime( int hour, int minutes, int seconds )
 {
-    QTime czas(hour,minutes,0);
+    QTime czas(hour,minutes,seconds);
     dateAndTimeObject.setTime(czas);
 }
 
@@ -107,6 +107,13 @@ string Date::getStringFromTime(QTime &time)
 int Date::getDaysInMonth()
 {
     return dateAndTimeObject.date().daysInMonth();
+}
+
+QDateTime Date::addDays(int days)
+{
+   QDateTime tmp;
+    tmp = dateAndTimeObject.addDays(days);
+    return tmp;
 }
 
 

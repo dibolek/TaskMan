@@ -18,7 +18,7 @@ public:
     QDate getCurrentDate();
     void setDate( int day, int month, int year );
     QTime getCurrentTime();
-    void setTime(int hour, int minutes);
+    void setTime(int hour, int minutes, int seconds);
     void setCurrentDateAndTime();
     void setDateFromString(string &date);
     void setTimeFromString(string &time);
@@ -27,6 +27,7 @@ public:
     string getStringFromDate(const QDate &date);
     string getStringFromTime(QTime &time);
     int getDaysInMonth();
+    QDateTime addDays(int days);
 
     void ImportDateAndTimeFromString(string _str);
     string ExportDateAndTimeToString();

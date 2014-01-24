@@ -64,7 +64,7 @@ int menuLogged()
     cout << "1. Wyswietl kalendarz" << endl;
     cout << "2. Wyswietl zdarzenia" << endl;
     cout << "3. Dodaj zdarzenie" << endl;
-    cout << "4. wyloguj sie" << endl << endl;
+    cout << "4. Wyloguj sie" << endl << endl;
     cout << "$: ";
 
     int choice = getIntegerFromConsole();
@@ -77,7 +77,7 @@ int menuShowCalendar()
     cout << "Menu - wyswietl kalendarz" << endl;
     cout << "1. Wyswietl aktualny miesiac" << endl;
     cout << "2. Wyswietl konkretny meisiac" << endl;
-    cout << "3. cofnij" << endl << endl;
+    cout << "3. Cofnij" << endl << endl;
     cout << "$: ";
 
     int choice = getIntegerFromConsole();
@@ -88,9 +88,8 @@ int menuShowEvents()
 {
     cout << "Menu - wyswietl zdarzenia" << endl;
     cout << "1. Wyswietl najblizsze" << endl;
-    cout << "2. Wyswietl z danego miesiac" << endl;
-    cout << "3. Wyswietl z danego miesiac" << endl;
-    cout << "4. cofnij" << endl << endl;
+    cout << "2. Wyswietl z danego miesiaca" << endl;
+    cout << "3. Cofnij" << endl << endl;
     cout << "$: ";
 
     int choice = getIntegerFromConsole();
@@ -103,7 +102,7 @@ int menuAddEvent()
     cout << "1. Spotkanie" << endl;
     cout << "2. Zadanie" << endl;
     cout << "3. Notatka" << endl;
-    cout << "4. cofnij" << endl << endl;
+    cout << "4. Cofnij" << endl << endl;
     cout << "$: ";
 
     int choice = getIntegerFromConsole();

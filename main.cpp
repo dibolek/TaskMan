@@ -179,36 +179,29 @@ int main()
                             cin.get();
                             break;
                         }
-                        case 2:
+                        case 2: //mainMenu-menuLogged-wyswietl zdarzenia-wyswietl z danego msc
                         {
                             clearScreen();
                             loggedAs();
                             cout << currentUser.getUserName() << endl << endl;
 
-                            //zrobic pobieranie daty i na jej podstawie obliczyc poczatek i koneic miesiaca
+                            int year, month;
+                            do{
+                            cout<< "Podaj rok : ";
+                            year = getIntegerFromConsole();
+                            }while( !(year != 0 && year > MIN_YEAR_ACCEPTED && year < MAX_YEAR_ACCEPTED)  );
+                            do{
+                                  cout << "Podaj miesiac : ";
+                                  month = getIntegerFromConsole();
+                            }while(!(month > 0 && month < 13));
 
-                            string data;
-                            coreDate.setCurrentDateAndTime();
+                            coreDate.setDate(1,month,year);
+                            coreDate.setTime(0,0,0);
 
-                            //---------- obliczanie zakresu z podanej daty -----------
+                            int daysinmonth = coreDate.getDaysInMonth();
 
-
-
-                            cout << "Podaj date ( dd-MM-yyyy ): ";
-                            cin >> data;
-
-                            coreDate.setDateFromString(data);
-
-                            int day = coreDate.getDateAndTimeObject().date().day();
-
-                            QDateTime tmpDate = coreDate.getDateAndTimeObject().addDays(-day+1);
-                            tmpDate.setTime(QTime::fromString("00:00:01","hh:mm:ss"));
-
-                            int days = coreDate.getDateAndTimeObject().date().daysInMonth();
-
-                            QDateTime tmpDate2 = tmpDate.addDays(days-1);
-                            tmpDate2.setTime(QTime::fromString("23:59:59","hh:mm:ss"));
-
+                            QDateTime enddate = coreDate.addDays(daysinmonth);
+                            cout << "\nDays in month int :" << daysinmonth;
 
                             //-------------- wyswietlenie zakresu i zdarzen --------------------
 
@@ -216,16 +209,18 @@ int main()
                             loggedAs();
                             cout << currentUser.getUserName() << endl << endl;
                             cout << "Wybrany zakres: ";
-                            cout << tmpDate.toString("dd-MM-yyyy hh:mm:ss").toStdString();
+//                            cout << tmpDate.toString("dd-MM-yyyy hh:mm:ss").toStdString();
+                            cout << coreDate.getDateAndTimeObject().toString("dd-MM-yyyy hh:mm:ss").toStdString();
                             cout << " - ";
-                            cout << tmpDate2.toString("dd-MM-yyyy hh:mm:ss").toStdString() << endl << endl;
+//                            cout << tmpDate2.toString("dd-MM-yyyy hh:mm:ss").toStdString() << endl << endl;
+                            cout << enddate.addSecs(-1).toString("dd-MM-yyyy hh:mm:ss").toStdString() << endl << endl;
 
 
                             eventVectorTmp = currentUser.getEventsVector();
                             Event* p_tmp = 0;
                             for ( vector<Event*>::iterator itr = eventVectorTmp.begin(), end = eventVectorTmp.end(); itr != end; ++itr){
                                     p_tmp = (*itr);
-                                    if ( p_tmp->getDataIczas() >= tmpDate && p_tmp->getDataIczas() <= tmpDate2 )
+                                    if ( (p_tmp->getDataIczas() >= coreDate.getDateAndTimeObject()) && (p_tmp->getDataIczas() <= enddate) )
                                         {
                                             p_tmp->printEventInfo();
                                         }
@@ -295,7 +290,7 @@ int main()
                                       }while(!(min >= 0 && min < 60) );
 
                                       coreDate.setDate(day,month,year);
-                                      coreDate.setTime(hour,min);
+                                      coreDate.setTime(hour,min,0);
 
                               }else coreDate.setCurrentDateAndTime();
             //                    }else if ( choice !=4 ) coreDate.setCurrentDateAndTime();
