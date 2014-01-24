@@ -37,7 +37,6 @@ class AllUsers
 
         void displayOptions();
         void displayUsersInfo();
-
 };
 
 #endif // ALLUSERS_H

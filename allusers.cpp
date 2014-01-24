@@ -2,7 +2,6 @@
 
 
 //--------------constructors and destructor section ----------------------------
-
 AllUsers::AllUsers()
 {
 
@@ -16,7 +15,6 @@ AllUsers::~AllUsers()
 
 
 //--------------------- get and set section ------------------------------------
-
 vector<UsersListStruct> AllUsers::getUsersVector() const
 {
     return usersVector;
@@ -28,7 +26,6 @@ void AllUsers::setUsersVector(const vector<UsersListStruct> &value)
 }
 
 //---------------------- other methods -----------------------------------------
-
 User AllUsers::addUser(string uName)
 {
     bool value=1;
@@ -45,7 +42,6 @@ User AllUsers::addUser(string uName)
             }
     }
 
-
     UsersListStruct curUser;
     curUser.userName = uName;
     curUser.userID = id;
@@ -56,7 +52,6 @@ User AllUsers::addUser(string uName)
     User usrTmp(uName,id,curUser.fileName);
 
     return usrTmp;
-
 }
 
 void AllUsers::removeUser(int id)
@@ -78,7 +73,6 @@ void AllUsers::displayOptions()
 
 void AllUsers::displayUsersInfo()
 {
-//    cout<<"Dostepni uzytkownicy:\n";
     int j(0);
     for ( vector<UsersListStruct>::iterator itr = usersVector.begin(), end = usersVector.end() ; itr != end; ++itr ) {
             cout<<++j<<". "<<(*itr).userName<<" ( UserID - "

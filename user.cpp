@@ -1,9 +1,6 @@
 #include "user.h"
 
-
 //--------------constructors and destructor section ----------------------------
-
-
 User::User(string name, int id, string fname)
 {
     userID = id;
@@ -27,7 +24,6 @@ User::~User()
 }
 
 //--------------------- get and set section ------------------------------------
-
 vector<Event *> User::getEventsVector() const
 {
     return eventsVector;
@@ -69,7 +65,6 @@ void User::setFileName(const string &value)
 }
 
 //---------------------- other methods -----------------------------------------
-
 void User::addEvent(int typeOfEvent, QDateTime _dataIczas, string message, string place, int duration)
 {
     Event * eventTMP = 0;
@@ -103,7 +98,6 @@ void User::addEvent(int typeOfEvent, QDateTime _dataIczas, string message, strin
         }
 
     eventsVector.push_back(eventTMP);
-
 }
 
 void User::removeEvent(int id)

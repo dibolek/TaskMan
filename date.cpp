@@ -1,8 +1,5 @@
 #include "date.h"
 
-
-
-
 QDateTime Date::getDateAndTimeObject() const
 {
     return dateAndTimeObject;
@@ -22,7 +19,6 @@ Date::Date()
 {
     dateAndTimeObject = QDateTime(QDate::currentDate(),QTime::currentTime());
 }
-
 
 
 //ustawienie wprowadzonej daty przy wprowadzaniu osobno dnia, miesiaca i roku
@@ -46,7 +42,6 @@ void Date::setTimeFromString(string &time)
     QTime timeFromString = QTime::fromString(timeString,"hh:mm");
     dateAndTimeObject.setTime(timeFromString);
 }
-
 
 //ustawianie czasu przy wprowadzaniu osobno godziny, minuty i sekundy
 void Date::setTime( int hour, int minutes, int seconds )
@@ -103,8 +98,6 @@ QDateTime Date::addDays(int days)
     return tmp;
 }
 
-
-
 void Date::ImportDateAndTimeFromString(string _str)
 {
     QString qstr(_str.c_str());
@@ -114,5 +107,4 @@ void Date::ImportDateAndTimeFromString(string _str)
 string Date::ExportDateAndTimeToString()
 {
     return dateAndTimeObject.toString("dd-MM-yyyyhh:mm").toStdString();
-//    return _qdt.toString("dd-MM-yyyyhh:mm").toStdString();
 }

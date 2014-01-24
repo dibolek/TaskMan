@@ -20,11 +20,6 @@ class User
         string userName;
         string fileName;
         vector<Event *> eventsVector;
-//        struct PointerCompare{
-//                bool operator()(const Event* ls, const Event* rs){
-//                    return (*ls).getDataIczas() < (*rs).getDataIczas();
-//                };
-//        };
 
     public:
 //--------------constructors and destructor section ----------------------------
@@ -50,7 +45,6 @@ class User
         void sortEventsByDate();
         void displayEvents();
         void saveUserData();
-
 };
 
 #endif // USER_H

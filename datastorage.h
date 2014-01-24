@@ -18,8 +18,6 @@ class DataStorage
 
         void allUsersVectorExport(vector<UsersListStruct> &vec, string nazwapliku);
         vector<UsersListStruct> allUsersVectorImport(string nazwapliku);
-//        void allUsersVectorImport(vector<UsersListStruct> &vec, string nazwapliku);
-
 };
 
 #endif // DATASTORAGE_H

@@ -1,6 +1,5 @@
 #include "event.h"
 
-
 int Event::getEventID() const
 {
     return eventID;

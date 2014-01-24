@@ -1,5 +1,5 @@
 #include "calendar.h"
-#include <iomanip>
+
 
 using namespace std;
 
@@ -9,7 +9,6 @@ Calendar::Calendar()
 
 void Calendar::displayCalendar( Date &data )
 {
-    //data.setDate(01,month,year);
     int days = data.getDateAndTimeObject().date().daysInMonth();
     int weekDay = data.getDateAndTimeObject().date().dayOfWeek();
 
@@ -47,9 +46,7 @@ void Calendar::displayCalendar( Date &data )
                 tablica[0][j-1] = licznik;
             }
         }
-
     }
-
 
     //sprawdza ile liter ma nazwa miesiaca i na tej podstawie
     //wyrownuje naglowek wzgledem ciala kalendarza dodajac odpowiednia ilosc spacji
@@ -84,7 +81,5 @@ void Calendar::displayCalendar( Date &data )
     }
     //rysowanie kreski
     cout << a << endl;
-
     cout << endl << "Dzisiaj mamy: " << data.getStringFromDate(data.getDateAndTimeObject().date().currentDate()) << endl << endl;
-
 }

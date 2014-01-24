@@ -1,6 +1,5 @@
 #include "functions.h"
 
-
 int createRandomValue(int range, int startingPoint)
 {
     return ( rand()% range + startingPoint );
@@ -24,7 +23,6 @@ int getIntegerFromConsole()
     return x;
 }
 
-
 int convertStringToInt(string _str)
 {
     stringstream ss(_str);
@@ -39,7 +37,7 @@ int mainMenu()
     clearScreen();
 
 
-    cout << "Aplikacja Kalendarz" << endl << endl;
+    cout << "Aplikacja Task Manager v1.0" << endl << endl;
     cout << "Menu" << endl;
     cout << "1. Zaloguj sie" << endl;
     cout << "2. Zaloz konto" << endl;
@@ -54,7 +52,7 @@ int mainMenu()
 
 void loggedAs()
 {
-    cout << "Aplikacja Kalendarz" << endl << endl;
+    cout << "Aplikacja Task Manager v1.0" << endl << endl;
     cout << "Jestes zalogowany jako: ";
 }
 

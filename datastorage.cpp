@@ -43,7 +43,7 @@ void DataStorage::userDataExport(User &usr)
     }//for
     plik.flush();
     plik.close();
-}//userDataExport
+}
 
 void DataStorage::userDataImport(User &usr, string _nazwaPliku)
 {
@@ -99,7 +99,7 @@ void DataStorage::userDataImport(User &usr, string _nazwaPliku)
     }//for
     usr.setEventsVector(tmp);
     plik.close();
-}//dataStorage
+}
 
 void DataStorage::allUsersVectorExport(vector<UsersListStruct> &vec, string nazwapliku)
 {
@@ -113,7 +113,6 @@ void DataStorage::allUsersVectorExport(vector<UsersListStruct> &vec, string nazw
         }
     plik.flush();
     plik.close();
-
 }
 
 vector<UsersListStruct> DataStorage::allUsersVectorImport(string nazwapliku)
@@ -138,6 +137,5 @@ vector<UsersListStruct> DataStorage::allUsersVectorImport(string nazwapliku)
             (*itr).fileName = y;
     }
     plik.close();
-//    vec = temporary;
     return temporary;
 }

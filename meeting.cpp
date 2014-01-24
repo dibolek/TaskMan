@@ -1,6 +1,5 @@
 #include "meeting.h"
 
-
 string Meeting::getPlaceOfMeeting() const
 {
     return placeOfMeeting;
