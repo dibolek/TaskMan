@@ -15,9 +15,7 @@ private:
 public:
     Date();
 
-    QDate getCurrentDate();
     void setDate( int day, int month, int year );
-    QTime getCurrentTime();
     void setTime(int hour, int minutes, int seconds);
     void setCurrentDateAndTime();
     void setDateFromString(string &date);

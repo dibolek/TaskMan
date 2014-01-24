@@ -76,7 +76,7 @@ int menuShowCalendar()
 {
     cout << "Menu - wyswietl kalendarz" << endl;
     cout << "1. Wyswietl aktualny miesiac" << endl;
-    cout << "2. Wyswietl konkretny meisiac" << endl;
+    cout << "2. Wyswietl konkretny miesiac" << endl;
     cout << "3. Cofnij" << endl << endl;
     cout << "$: ";
 

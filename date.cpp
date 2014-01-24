@@ -23,13 +23,7 @@ Date::Date()
     dateAndTimeObject = QDateTime(QDate::currentDate(),QTime::currentTime());
 }
 
-// zwracanie aktualnej daty
-QDate Date::getCurrentDate()
-{
-    QDate date  = QDate::currentDate();
 
-    return date;
-}
 
 //ustawienie wprowadzonej daty przy wprowadzaniu osobno dnia, miesiaca i roku
 void Date::setDate( int day, int month, int year )
@@ -53,13 +47,6 @@ void Date::setTimeFromString(string &time)
     dateAndTimeObject.setTime(timeFromString);
 }
 
-//zwracanie aktualnego czasu
-QTime Date::getCurrentTime()
-{
-    QTime time = QTime::currentTime();
-
-    return time;
-}
 
 //ustawianie czasu przy wprowadzaniu osobno godziny, minuty i sekundy
 void Date::setTime( int hour, int minutes, int seconds )

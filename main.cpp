@@ -101,34 +101,46 @@ int main()
                         choice = menuShowCalendar();
 
                         switch (choice) {
-                        case 1: //mainMenu-menuLogged-wyswietl kalendarz-wyswietl aktualny miesiac
-                            system ("cls");
-                            loggedAs();
-                            cout << currentUser.getUserName() << endl << endl;
+                        case 1:
+                                {
+                                    //mainMenu-menuLogged-wyswietl kalendarz-wyswietl aktualny miesiac
+                                    system ("cls");
+                                    loggedAs();
+                                    cout << currentUser.getUserName() << endl << endl;
 
-                            coreDate.setCurrentDateAndTime();
+                                    coreDate.setCurrentDateAndTime();
 
-                            kalendarz.displayCalendar(coreDate);
+                                    kalendarz.displayCalendar(coreDate);
 
-                           pause();
-                            break;
+                                    pause();
+                                    break;
+                                }
                         case 2: //mainMenu-menuLogged-wyswietl kalendarz-wyswietl konkretny miesiac
                         {
                             clearScreen();
-                            string _date;
                             loggedAs();
                             cout << currentUser.getUserName() << endl << endl;
 
-                            cout << "Podaj date ( dd-MM-yyyy ): ";
-                            cin >> _date;
+                            int year, month;
+                            do{
+                            cout<< "Podaj rok : ";
+                            year = getIntegerFromConsole();
+                            }while( !(year != 0 && year > MIN_YEAR_ACCEPTED && year < MAX_YEAR_ACCEPTED)  );
+                            do{
+                                  cout << "Podaj miesiac : ";
+                                  month = getIntegerFromConsole();
+                            }while(!(month > 0 && month < 13));
+
+                            coreDate.setDate(1,month,year);
+                            coreDate.setTime(0,0,0);
 
                             clearScreen();
 
                             loggedAs();
                             cout << currentUser.getUserName() << endl << endl;
 
-                            coreDate.setDateFromString(_date);
-                            kalendarz.displayCalendar(coreDate);
+
+                            kalendarz.displayCalendar( coreDate );
 
                             cout << endl << endl;
                             pause();
@@ -136,7 +148,10 @@ int main()
 
                             break;
                         }
+                        case 3:
+                                break;
                         default:
+
                             cout << "Nie ma takiej opcji!";
                             pause();
                             break;
@@ -246,8 +261,8 @@ int main()
                             pause();
                             break;
                         }
-                        case 3:
-
+                        case 3: // mainMenu-menuLogged-wyswietl zdarzenia-wyswietl wszystkie
+                                {
                                 clearScreen();
                                 loggedAs();
                                 cout << currentUser.getUserName() << endl << endl;
@@ -256,8 +271,14 @@ int main()
                                 pause();
 
                                 break;
+                          }
+                        case 4:
+                                    break;
                         default:
-                            break;
+                                clearScreen();
+                                cout << "Nie ma takiej opcji!"<<endl;
+                                pause();
+                                break;
                         }
                     }
                     while(choice!=4);
@@ -276,6 +297,13 @@ int main()
                               string place, message;
 
                               if(choice==4) break;
+
+                              if(choice<1 || choice >4) {
+                                      cout << "Nie ma takiej opcji!"<<endl;
+                                      pause();
+                                  }
+                              else{
+
 
                               if(choice == 1) cout << "Dodajesz spotkanie" << endl << endl;
                               else if(choice == 2) cout << "Dodajesz zadanie" << endl << endl;
@@ -343,12 +371,18 @@ int main()
                               currentUser.sortEventsByDate();
                               currentUser.displayEvents();
                               storage.userDataExport(currentUser);
+                                  }
 
                               }while(true);
                         }
 
-                default:
-                    break;
+                    case 4:
+                                break;
+                    default:
+                            clearScreen();
+                            cout << "Nie ma takiej opcji!"<<endl;
+                            pause();
+                            break;
                 }
                 }
                 while(choice!=4);
@@ -409,9 +443,14 @@ int main()
             }
         }
             break;
+        case 4:
+            break;
 
         default:
-            break;
+                    clearScreen();
+                    cout << "Nie ma takiej opcji!"<<endl;
+                    pause();
+                    break;
         }
     }
     while(choice!=4);
