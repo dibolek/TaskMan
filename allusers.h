@@ -35,7 +35,6 @@ class AllUsers
         void removeUser(int id);
         int getUserCount();
 
-        void displayOptions();
         void displayUsersInfo();
 };
 

@@ -7,7 +7,6 @@
 #include <cstring>
 #include <sstream>
 
-
 using namespace std;
 
 int createRandomValue(int range, int startingPoint);
@@ -23,6 +22,5 @@ int menuShowCalendar();
 int menuShowEvents();
 void loggedAs();
 int menuAddEvent();
-
 
 #endif // FUNCTIONS_H

@@ -66,10 +66,6 @@ int AllUsers::getUserCount()
     return static_cast<int>( usersVector.size() );
 }
 
-void AllUsers::displayOptions()
-{
-
-}
 
 void AllUsers::displayUsersInfo()
 {

@@ -28,46 +28,12 @@ void Date::setDate( int day, int month, int year )
     dateAndTimeObject.setDate(data);
 }
 
-void Date::setDateFromString(string &date)
-{
-    QString dateString = QString::fromStdString(date);
-    QDate dateFromString = QDate::fromString(dateString,"dd-MM-yyyy");
-    dateAndTimeObject.setDate(dateFromString);
-}
-
-// zamiana string > qtime
-void Date::setTimeFromString(string &time)
-{
-    QString timeString = QString::fromStdString(time);
-    QTime timeFromString = QTime::fromString(timeString,"hh:mm");
-    dateAndTimeObject.setTime(timeFromString);
-}
-
 //ustawianie czasu przy wprowadzaniu osobno godziny, minuty i sekundy
 void Date::setTime( int hour, int minutes, int seconds )
 {
     QTime czas(hour,minutes,seconds);
     dateAndTimeObject.setTime(czas);
 }
-
-// zamiana string > qdate
-QDate Date::getDateFromString(string &date)
-{
-    QString dateString = QString::fromStdString(date);
-    QDate dateFromString = QDate::fromString(dateString,"dd-MM-yyyy");
-
-    return dateFromString;
-}
-
-// zamiana string > qtime
-QTime Date::getTimeFromString(string &time)
-{
-    QString timeString = QString::fromStdString(time);
-    QTime timeFromString = QTime::fromString(timeString,"hh:mm");
-
-    return timeFromString;
-}
-
 // zamiana qdate > string
 string Date::getStringFromDate(const QDate &date)
 {
@@ -75,15 +41,6 @@ string Date::getStringFromDate(const QDate &date)
     string dateString = tmpString.toStdString();
 
     return dateString;
-}
-
-// zamiana qtime > string
-string Date::getStringFromTime(QTime &time)
-{
-    QString tmptime = time.toString("hh:mm");
-    string timeString = tmptime.toStdString();
-
-    return timeString;
 }
 
 int Date::getDaysInMonth()
